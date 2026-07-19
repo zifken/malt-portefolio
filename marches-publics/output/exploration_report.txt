@@ -1,0 +1,148 @@
+======================================================================
+DECP CONSOLIDATED DATA — EXPLORATION REPORT
+Generated: 2026-07-19 17:45
+Rows: 3,134,671 | Cols: 58
+======================================================================
+
+--- donneesActuelles (de-dup to current state) ---
+donneesActuelles
+True     1990351
+False    1112150
+None       32170
+
+--- Year coverage (dateNotification) ---
+dateNotification
+1899.0         4
+1900.0         6
+1920.0         2
+1922.0         1
+1924.0         1
+1936.0         1
+1942.0         2
+1960.0         4
+1969.0         1
+1970.0         2
+1981.0         1
+1990.0         3
+1992.0         1
+1996.0         2
+1997.0         1
+1999.0         1
+2000.0        18
+2001.0         5
+2002.0        72
+2003.0        13
+2004.0        19
+2005.0        32
+2006.0        11
+2007.0         8
+2008.0         7
+2009.0        18
+2010.0        25
+2011.0        20
+2012.0        77
+2013.0        37
+2014.0       104
+2015.0        99
+2016.0       527
+2017.0      1092
+2018.0     23548
+2019.0    169706
+2020.0    252563
+2021.0    382253
+2022.0    452269
+2023.0    483036
+2024.0    531003
+2025.0    551766
+2026.0    253256
+NaN        33054
+
+--- Null rates for analytical key columns ---
+  montant                        1.63% null
+  titulaire_categorie            6.28% null
+  offresRecues                  60.09% null
+  type                           0.00% null
+  procedure                      4.74% null
+  codeCPV                        0.02% null
+  acheteur_categorie            14.65% null
+  acheteur_region_nom            0.66% null
+  titulaire_region_nom           4.46% null
+  titulaire_distance            20.73% null
+  donneesActuelles               1.03% null
+
+--- titulaire_categorie ---
+titulaire_categorie
+PME     1749149
+ETI      635760
+GE       553015
+None     196747
+
+--- type ---
+type
+Travaux           1343700
+Services          1117435
+Fournitures        668585
+Non catégorisé       4951
+
+--- procedure ---
+procedure
+Procédure adaptée                                                 1574493
+Appel d'offres ouvert                                             1147038
+None                                                               148445
+Marché passé sans publicité ni mise en concurrence préalable        74236
+Procédure avec négociation                                          56517
+Appel d'offres restreint                                            33569
+Marché négocié sans publicité ni mise en concurrence préalable      29236
+Dialogue compétitif                                                 23568
+Procédure négociée avec mise en concurrence préalable               15250
+Procédure concurrentielle avec négociation                          15205
+
+--- acheteur_categorie ---
+acheteur_categorie
+Commune                      1066779
+Groupement de communes        583218
+None                          459075
+Département                   392630
+EPIC                          176977
+Établissement hospitalier     173034
+Syndicat mixte                135820
+Région                         82010
+État                           52802
+Département outre-mer          12326
+
+--- montant stats (donneesActuelles=True, n=1,990,351) ---
+count    1.921609e+06
+mean     9.316204e+06
+std      6.474456e+08
+min      1.000000e-02
+50%      1.250000e+05
+90%      1.511032e+06
+99%      2.380404e+07
+max      1.000000e+11
+  total awarded (€): 17,902,101,022,320
+  total awarded (€M): 17,902,101.0
+
+--- Competition (offresRecues) ---
+  rows with known offresRecues: 783,186 (39.3%)
+  single-bid (<=1 offer) share among known: 22.2%
+offresRecues
+-8.0         2
+-4.0         6
+-3.0        17
+-2.0        31
+-1.0        86
+ 0.0      2779
+ 1.0    170653
+ 2.0    123254
+ 3.0    119222
+ 4.0     76615
+
+--- titulaire_distance (km, current data) ---
+count    1.562962e+06
+mean     1.760042e+02
+std      6.292880e+02
+min      0.000000e+00
+50%      4.000000e+01
+90%      4.470000e+02
+99%      7.880000e+02
+max      1.691800e+04

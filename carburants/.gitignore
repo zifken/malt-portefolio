@@ -1,0 +1,14 @@
+# User-specific / OS
+.DS_Store
+__pycache__/
+*.pyc
+
+# Large data files (keep only scripts; data can be regenerated)
+*.zip
+PrixCarburants_instantane.xml
+raw/*.csv
+!raw/stations_enriched.csv
+outputs/*.png
+outputs/*.html
+outputs/*.txt
+outputs/*.log
