@@ -16,8 +16,8 @@ import plotly.graph_objects as go
 from pathlib import Path
 import sys
 
-# Directories
-DATA_DIR = Path("data")
+# Directories — use __file__-relative path for Streamlit Cloud compatibility
+DATA_DIR = Path(__file__).resolve().parent / "data"
 
 
 @st.cache_data(show_spinner="Loading 557k transactions...")
