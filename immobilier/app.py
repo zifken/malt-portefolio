@@ -16,11 +16,69 @@ import plotly.graph_objects as go
 from pathlib import Path
 import sys
 
+THEME = {
+    "colors": {
+        "bg": "#FFFFFF",
+        "surface": "#F5F5F7",
+        "primary": "#1B3A5C",
+        "secondary": "#C8553D",
+        "tertiary": "#5B8C5A",
+        "text": "#1A1A1A",
+        "muted": "#6B6B6B",
+        "grid": "#E0E0E0",
+        "font": "Helvetica Neue, Arial, sans-serif",
+    }
+}
+
+TEMPLATE = go.layout.Template(
+    layout=go.Layout(
+        paper_bgcolor=THEME["colors"]["bg"],
+        plot_bgcolor=THEME["colors"]["surface"],
+        font=dict(
+            family=THEME["colors"]["font"],
+            color=THEME["colors"]["text"],
+        ),
+        title=dict(
+            font=dict(
+                family=THEME["colors"]["font"],
+                color=THEME["colors"]["primary"],
+            )
+        ),
+        xaxis=dict(
+            gridcolor=THEME["colors"]["grid"],
+            linecolor=THEME["colors"]["grid"],
+            tickfont=dict(color=THEME["colors"]["text"]),
+            title=dict(font=dict(color=THEME["colors"]["primary"])),
+            zerolinecolor=THEME["colors"]["grid"],
+        ),
+        yaxis=dict(
+            gridcolor=THEME["colors"]["grid"],
+            linecolor=THEME["colors"]["grid"],
+            tickfont=dict(color=THEME["colors"]["text"]),
+            title=dict(font=dict(color=THEME["colors"]["primary"])),
+            zerolinecolor=THEME["colors"]["grid"],
+        ),
+        colorway=[
+            THEME["colors"]["primary"],
+            THEME["colors"]["secondary"],
+            THEME["colors"]["tertiary"],
+        ],
+        legend=dict(font=dict(color=THEME["colors"]["text"])),
+        hoverlabel=dict(
+            bgcolor=THEME["colors"]["surface"],
+            font=dict(
+                family=THEME["colors"]["font"],
+                color=THEME["colors"]["text"],
+            ),
+        ),
+    )
+)
+
 # Directories — use __file__-relative path for Streamlit Cloud compatibility
 DATA_DIR = Path(__file__).resolve().parent / "data"
 
 
-@st.cache_data(show_spinner="Loading 557k transactions...")
+@st.cache_data(show_spinner="Chargement de 557 000 transactions...")
 def load_data():
     """Load slim parquet (9 columns, ~51 MB in memory) — fits Streamlit Cloud 1 GB limit."""
     parquet_path = DATA_DIR / "dvf_slim.parquet"
@@ -28,8 +86,8 @@ def load_data():
         # Fallback: try CSV.gz (for local dev without the slim parquet)
         clean_files = list(DATA_DIR.glob("*_clean.csv*"))
         if not clean_files:
-            st.error("❌ No data files found!")
-            st.info("Run `python 03_data_cleaning.py` then `python 04_analysis.py` first.")
+            st.error("Aucun fichier de données trouvé !")
+            st.info("Exécutez d'abord `python 03_data_cleaning.py`, puis `python 04_analysis.py`.")
             st.stop()
         clean_files.sort(key=lambda x: x.stat().st_mtime, reverse=True)
         df = pd.read_csv(clean_files[0], dtype={'type_local': 'category'},
@@ -49,17 +107,17 @@ def create_header():
     """Create dashboard header."""
     
     st.set_page_config(
-        page_title="French Real Estate Analysis",
-        page_icon="🏠",
+        page_title="Analyse du marché immobilier français",
+        page_icon=None,
         layout="wide"
     )
     
-    st.title("🏠 French Real Estate Market Analysis")
+    st.title("Analyse du marché immobilier français")
     st.markdown("""
-    **Interactive Dashboard** — 5 grandes métropoles françaises (Paris, Marseille, Lyon, Toulouse, Nantes), 2021-2024.
-    Données : DVF (data.gouv.fr) · 557k transactions nettoyées · Licence Ouverte 2.0.
+    **Tableau de bord interactif** — 5 grandes métropoles françaises (Paris, Marseille, Lyon, Toulouse, Nantes), 2021-2024.
+    Données : DVF (data.gouv.fr) · 557 000 transactions nettoyées · Licence Ouverte 2.0.
 
-    *Projet portfolio pour profil Malt.fr — Data Analyst / Data Scientist.*
+    *Projet portfolio pour profil Malt.fr — Analyste de données / Scientifique des données.*
     """)
     
     st.divider()
@@ -68,12 +126,12 @@ def create_header():
 def create_sidebar_filters(df):
     """Create sidebar filters."""
     
-    st.sidebar.header("🔍 Filters")
+    st.sidebar.header("Filtres")
     
     # Property type filter
     property_types = df['type_local'].unique().tolist()
     selected_types = st.sidebar.multiselect(
-        "Property Type",
+        "Type de bien",
         options=property_types,
         default=property_types
     )
@@ -82,20 +140,20 @@ def create_sidebar_filters(df):
     years = sorted(df['year'].unique())
     if len(years) > 1:
         selected_years = st.sidebar.slider(
-            "Year Range",
+            "Plage d'années",
             min_value=int(min(years)),
             max_value=int(max(years)),
             value=(int(min(years)), int(max(years)))
         )
     else:
-        st.sidebar.info(f"📅 Data year: {years[0]}")
+        st.sidebar.info(f"Année des données : {years[0]}")
         selected_years = (years[0], years[0])
     
     # Price range filter
     p_min, p_max = int(df['prix_m2'].min()), int(df['prix_m2'].max())
     if p_min < p_max:
         price_min, price_max = st.sidebar.slider(
-            "Price per m² Range (€)",
+            "Plage de prix au m² (€)",
             min_value=p_min,
             max_value=p_max,
             value=(int(df['prix_m2'].quantile(0.05)), int(df['prix_m2'].quantile(0.95)))
@@ -107,7 +165,7 @@ def create_sidebar_filters(df):
     s_min, s_max = int(df['surface_reelle_bati'].min()), int(df['surface_reelle_bati'].max())
     if s_min < s_max:
         surface_min, surface_max = st.sidebar.slider(
-            "Surface Area Range (m²)",
+            "Plage de surface (m²)",
             min_value=s_min,
             max_value=s_max,
             value=(int(df['surface_reelle_bati'].quantile(0.05)),
@@ -133,50 +191,50 @@ def create_sidebar_filters(df):
 def display_kpi_metrics(df):
     """Display key performance indicators."""
     
-    st.header("📊 Key Metrics")
+    st.header("Indicateurs clés")
     
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
         total_transactions = len(df)
-        st.metric("Total Transactions", f"{total_transactions:,}")
+        st.metric("Total transactions", f"{total_transactions:,.0f}")
     
     with col2:
         avg_price = df['prix_m2'].mean()
-        st.metric("Average Price/m²", f"{avg_price:,.0f} €")
+        st.metric("Prix moyen au m²", f"{avg_price:,.0f} €")
     
     with col3:
         median_price = df['prix_m2'].median()
-        st.metric("Median Price/m²", f"{median_price:,.0f} €")
+        st.metric("Prix médian au m²", f"{median_price:,.0f} €")
     
     with col4:
         avg_surface = df['surface_reelle_bati'].mean()
-        st.metric("Average Surface", f"{avg_surface:.1f} m²")
+        st.metric("Surface moyenne", f"{avg_surface:.1f} m²")
     
     # Additional metrics
     col5, col6, col7, col8 = st.columns(4)
     
     with col5:
         unique_communes = df['code_commune'].nunique()
-        st.metric("Unique Communes", f"{unique_communes:,}")
+        st.metric("Communes distinctes", f"{unique_communes:,.0f}")
     
     with col6:
         price_growth = df.groupby('year')['prix_m2'].median().pct_change().mean() * 100
-        st.metric("Avg Annual Growth", f"{price_growth:+.1f}%")
+        st.metric("Croissance annuelle moyenne", f"{price_growth:+.1f}%")
     
     with col7:
         apartments_pct = (df['type_local'] == 'Appartement').mean() * 100
-        st.metric("Apartments", f"{apartments_pct:.1f}%")
+        st.metric("Appartements", f"{apartments_pct:.1f}%")
     
     with col8:
         houses_pct = (df['type_local'] == 'Maison').mean() * 100
-        st.metric("Houses", f"{houses_pct:.1f}%")
+        st.metric("Maisons", f"{houses_pct:.1f}%")
 
 
 def create_price_evolution_chart(df):
     """Create interactive price evolution chart."""
     
-    st.header("📈 Price Evolution Over Time")
+    st.header("Évolution des prix dans le temps")
     
     # Calculate yearly stats
     yearly_stats = df.groupby(['year', 'type_local']).agg(
@@ -190,18 +248,31 @@ def create_price_evolution_chart(df):
         x='year',
         y='prix_m2_median',
         color='type_local',
-        title='Price per m² Evolution by Property Type',
-        labels={'prix_m2_median': 'Price per m² (€)', 'year': 'Year'},
+        title='Évolution du prix au m² par type de bien',
+        labels={
+            'prix_m2_median': 'Prix au m² (€)',
+            'year': 'Année',
+            'type_local': 'Type de bien',
+        },
+        color_discrete_sequence=[
+            THEME["colors"]["primary"],
+            THEME["colors"]["secondary"],
+            THEME["colors"]["tertiary"],
+        ],
         markers=True
     )
     
     fig.update_layout(
-        xaxis_title="Year",
-        yaxis_title="Price per m² (€)",
-        hovermode='x unified'
+        template=TEMPLATE,
+        **TEMPLATE.layout.to_plotly_json(),
+        xaxis_title="Année",
+        yaxis_title="Prix au m² (€)",
+        hovermode='x unified',
     )
+    fig.update_xaxes(tickformat="d")
+    fig.update_yaxes(tickformat=",.0f")
     
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, theme=None)
     
     # Transaction volume chart
     yearly_volume = df.groupby('year').size().reset_index(name='count')
@@ -210,20 +281,24 @@ def create_price_evolution_chart(df):
         yearly_volume,
         x='year',
         y='count',
-        title='Transaction Volume by Year',
-        labels={'count': 'Number of Transactions', 'year': 'Year'}
+        title='Volume des transactions par année',
+        labels={'count': 'Nombre de transactions', 'year': 'Année'},
+        color_discrete_sequence=[THEME["colors"]["primary"]]
     )
+    fig_volume.update_layout(template=TEMPLATE, **TEMPLATE.layout.to_plotly_json())
+    fig_volume.update_xaxes(tickformat="d")
+    fig_volume.update_yaxes(tickformat=",d")
     
-    st.plotly_chart(fig_volume, use_container_width=True)
+    st.plotly_chart(fig_volume, use_container_width=True, theme=None)
 
 
 def create_geographic_analysis(df):
     """Create geographic analysis section."""
     
-    st.header("🌍 Geographic Analysis")
+    st.header("Analyse géographique")
     
     # Top communes by price
-    st.subheader("Top 20 Most Expensive Communes")
+    st.subheader("Les 20 communes les plus chères")
     
     commune_stats = df.groupby('code_commune').agg(
         prix_m2_median=('prix_m2', 'median'),
@@ -239,17 +314,23 @@ def create_geographic_analysis(df):
         top_communes,
         x='code_commune',
         y='prix_m2_median',
-        title='Top 20 Communes by Median Price per m²',
-        labels={'prix_m2_median': 'Price per m² (€)', 'code_commune': 'Commune Code'},
+        title='Les 20 communes au prix médian au m² le plus élevé',
+        labels={'prix_m2_median': 'Prix au m² (€)', 'code_commune': 'Code commune'},
         color='prix_m2_median',
-        color_continuous_scale='YlOrRd'
+        color_continuous_scale=[
+            THEME["colors"]["primary"],
+            THEME["colors"]["secondary"],
+        ]
     )
+    fig.update_layout(template=TEMPLATE, **TEMPLATE.layout.to_plotly_json())
+    fig.update_xaxes(type="category")
+    fig.update_yaxes(tickformat=",.0f")
     
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, use_container_width=True, theme=None)
     
     # Geographic scatter plot
     if 'longitude' in df.columns and 'latitude' in df.columns:
-        st.subheader("Geographic Price Distribution")
+        st.subheader("Répartition géographique des prix")
         
         # Sample for performance
         sample_size = min(5000, len(df))
@@ -261,20 +342,29 @@ def create_geographic_analysis(df):
             lon='longitude',
             color='prix_m2',
             size='surface_reelle_bati',
-            color_continuous_scale='YlOrRd',
+            color_continuous_scale=[
+                THEME["colors"]["primary"],
+                THEME["colors"]["secondary"],
+            ],
             mapbox_style='open-street-map',
             zoom=5,
-            title='Property Prices Across France',
-            labels={'prix_m2': 'Price per m² (€)'}
+            title='Prix des biens immobiliers en France',
+            labels={
+                'prix_m2': 'Prix au m² (€)',
+                'surface_reelle_bati': 'Surface bâtie réelle (m²)',
+                'latitude': 'Latitude',
+                'longitude': 'Longitude',
+            }
         )
+        fig.update_layout(template=TEMPLATE, **TEMPLATE.layout.to_plotly_json())
         
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, theme=None)
 
 
 def create_property_type_analysis(df):
     """Create property type analysis section."""
     
-    st.header("🏠 Property Type Analysis")
+    st.header("Analyse par type de bien")
     
     col1, col2 = st.columns(2)
     
@@ -289,12 +379,19 @@ def create_property_type_analysis(df):
             type_stats,
             x='type_local',
             y='prix_m2_median',
-            title='Median Price by Property Type',
-            labels={'prix_m2_median': 'Price per m² (€)', 'type_local': 'Property Type'},
-            color='type_local'
+            title='Prix médian par type de bien',
+            labels={'prix_m2_median': 'Prix au m² (€)', 'type_local': 'Type de bien'},
+            color='type_local',
+            color_discrete_sequence=[
+                THEME["colors"]["primary"],
+                THEME["colors"]["secondary"],
+                THEME["colors"]["tertiary"],
+            ]
         )
+        fig.update_layout(template=TEMPLATE, **TEMPLATE.layout.to_plotly_json())
+        fig.update_yaxes(tickformat=",.0f")
         
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, theme=None)
     
     with col2:
         # Transaction distribution
@@ -302,32 +399,49 @@ def create_property_type_analysis(df):
             type_stats,
             values='nb_transactions',
             names='type_local',
-            title='Transaction Distribution by Type'
+            title='Répartition des transactions par type',
+            labels={
+                'type_local': 'Type de bien',
+                'nb_transactions': 'Transactions',
+            },
+            color_discrete_sequence=[
+                THEME["colors"]["primary"],
+                THEME["colors"]["secondary"],
+                THEME["colors"]["tertiary"],
+            ]
         )
+        fig.update_layout(template=TEMPLATE, **TEMPLATE.layout.to_plotly_json())
         
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, theme=None)
     
     # Price distribution
-    st.subheader("Price Distribution by Property Type")
+    st.subheader("Répartition des prix par type de bien")
     
     fig = px.histogram(
         df,
         x='prix_m2',
         color='type_local',
         nbins=50,
-        title='Price Distribution by Property Type',
-        labels={'prix_m2': 'Price per m² (€)'},
+        title='Répartition des prix par type de bien',
+        labels={'prix_m2': 'Prix au m² (€)', 'type_local': 'Type de bien'},
+        color_discrete_sequence=[
+            THEME["colors"]["primary"],
+            THEME["colors"]["secondary"],
+            THEME["colors"]["tertiary"],
+        ],
         barmode='overlay'
     )
     
-    fig.update_layout(bargap=0.1)
-    st.plotly_chart(fig, use_container_width=True)
+    fig.update_layout(template=TEMPLATE, **TEMPLATE.layout.to_plotly_json(), bargap=0.1)
+    fig.update_xaxes(tickformat=",.0f")
+    fig.update_yaxes(tickformat=",d")
+    st.plotly_chart(fig, use_container_width=True, theme=None)
 
 
 def create_seasonal_analysis(df):
     """Create seasonal analysis section."""
     
-    st.header("📅 Seasonal Analysis")
+    st.header("Analyse saisonnière")
     
     col1, col2 = st.columns(2)
     
@@ -338,20 +452,23 @@ def create_seasonal_analysis(df):
             nb_transactions=('prix_m2', 'count')
         ).reset_index()
         
-        month_names = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        month_names = ['Jan', 'Fév', 'Mars', 'Avr', 'Mai', 'Juin',
+                       'Juil', 'Août', 'Sept', 'Oct', 'Nov', 'Déc']
         monthly_stats['month_name'] = monthly_stats['month'].apply(lambda x: month_names[x-1])
         
         fig = px.line(
             monthly_stats,
             x='month_name',
             y='prix_m2_median',
-            title='Seasonal Price Variations',
-            labels={'prix_m2_median': 'Price per m² (€)', 'month_name': 'Month'},
+            title='Variations saisonnières des prix',
+            labels={'prix_m2_median': 'Prix au m² (€)', 'month_name': 'Mois'},
+            color_discrete_sequence=[THEME["colors"]["primary"]],
             markers=True
         )
+        fig.update_layout(template=TEMPLATE, **TEMPLATE.layout.to_plotly_json())
+        fig.update_yaxes(tickformat=",.0f")
         
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, theme=None)
     
     with col2:
         # Monthly volume
@@ -359,14 +476,17 @@ def create_seasonal_analysis(df):
             monthly_stats,
             x='month_name',
             y='nb_transactions',
-            title='Monthly Transaction Volume',
-            labels={'nb_transactions': 'Number of Transactions', 'month_name': 'Month'}
+            title='Volume mensuel des transactions',
+            labels={'nb_transactions': 'Nombre de transactions', 'month_name': 'Mois'},
+            color_discrete_sequence=[THEME["colors"]["secondary"]]
         )
+        fig.update_layout(template=TEMPLATE, **TEMPLATE.layout.to_plotly_json())
+        fig.update_yaxes(tickformat=",d")
         
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, theme=None)
     
     # Seasonal insights
-    st.subheader("💡 Seasonal Insights")
+    st.subheader("Repères saisonniers")
     
     cheapest_month = monthly_stats.loc[monthly_stats['prix_m2_median'].idxmin()]
     most_expensive_month = monthly_stats.loc[monthly_stats['prix_m2_median'].idxmax()]
@@ -375,31 +495,31 @@ def create_seasonal_analysis(df):
     
     with col3:
         st.info(f"""
-        **Best Month to Buy:** {cheapest_month['month_name']}
-        - Price: {cheapest_month['prix_m2_median']:,.0f} €/m²
-        - Transactions: {cheapest_month['nb_transactions']:,}
+        **Meilleur mois pour acheter :** {cheapest_month['month_name']}
+        - Prix : {cheapest_month['prix_m2_median']:,.0f} €/m²
+        - Transactions : {cheapest_month['nb_transactions']:,.0f}
         """)
     
     with col4:
         st.success(f"""
-        **Best Month to Sell:** {most_expensive_month['month_name']}
-        - Price: {most_expensive_month['prix_m2_median']:,.0f} €/m²
-        - Transactions: {most_expensive_month['nb_transactions']:,}
+        **Meilleur mois pour vendre :** {most_expensive_month['month_name']}
+        - Prix : {most_expensive_month['prix_m2_median']:,.0f} €/m²
+        - Transactions : {most_expensive_month['nb_transactions']:,.0f}
         """)
 
 
 def create_market_segments(df):
     """Create market segments analysis."""
     
-    st.header("📊 Market Segments")
+    st.header("Segments de marché")
     
     # Create price segments
     df['price_segment'] = pd.cut(
         df['prix_m2'],
         bins=[0, 2000, 4000, 6000, 8000, float('inf')],
-        labels=['Budget (<2K€/m²)', 'Mid-Range (2-4K€/m²)', 
-                'Premium (4-6K€/m²)', 'Luxury (6-8K€/m²)', 
-                'Ultra-Luxury (>8K€/m²)']
+        labels=['Économique (< 2 000 €/m²)', 'Intermédiaire (2 000–4 000 €/m²)',
+                'Premium (4 000–6 000 €/m²)', 'Luxe (6 000–8 000 €/m²)',
+                'Ultra-luxe (> 8 000 €/m²)']
     )
     
     # Segment statistics
@@ -420,49 +540,96 @@ def create_market_segments(df):
             segment_stats,
             values='nb_transactions',
             names='price_segment',
-            title='Market Segments by Transaction Volume'
+            title='Segments de marché par volume de transactions',
+            labels={
+                'price_segment': 'Segment',
+                'nb_transactions': 'Transactions',
+            },
+            color_discrete_sequence=[
+                THEME["colors"]["primary"],
+                THEME["colors"]["secondary"],
+                THEME["colors"]["tertiary"],
+            ]
         )
+        fig.update_layout(template=TEMPLATE, **TEMPLATE.layout.to_plotly_json())
         
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, theme=None)
     
     with col2:
         fig = px.bar(
             segment_stats,
             x='price_segment',
             y='prix_m2_median',
-            title='Median Price by Segment',
-            labels={'prix_m2_median': 'Price per m² (€)', 'price_segment': 'Segment'},
-            color='price_segment'
+            title='Prix médian par segment',
+            labels={'prix_m2_median': 'Prix au m² (€)', 'price_segment': 'Segment'},
+            color='price_segment',
+            color_discrete_sequence=[
+                THEME["colors"]["primary"],
+                THEME["colors"]["secondary"],
+                THEME["colors"]["tertiary"],
+            ]
         )
+        fig.update_layout(template=TEMPLATE, **TEMPLATE.layout.to_plotly_json())
+        fig.update_yaxes(tickformat=",.0f")
         
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, use_container_width=True, theme=None)
 
 
 def create_data_table(df):
     """Create interactive data table."""
     
-    st.header("📋 Data Explorer")
+    st.header("Explorateur de données")
     
     # Add filters
     col1, col2 = st.columns(2)
     
     with col1:
         selected_type = st.selectbox(
-            "Filter by Property Type",
-            options=['All'] + df['type_local'].unique().tolist()
+            "Filtrer par type de bien",
+            options=['Tous'] + df['type_local'].unique().tolist()
         )
     
     with col2:
-        max_rows = st.slider("Max rows to display", 100, 1000, 500)
+        max_rows = st.slider("Nombre maximal de lignes à afficher", 100, 1000, 500)
     
     # Apply filters
     filtered_df = df.copy()
-    if selected_type != 'All':
+    if selected_type != 'Tous':
         filtered_df = filtered_df[filtered_df['type_local'] == selected_type]
     
     # Display table
     st.dataframe(
         filtered_df.head(max_rows),
+        column_config={
+            "date_mutation": "Date de mutation",
+            "type_local": "Type de bien",
+            "code_commune": st.column_config.NumberColumn(
+                "Code commune",
+                format="%d",
+            ),
+            "code_departement": st.column_config.NumberColumn(
+                "Code département",
+                format="%d",
+            ),
+            "nom_commune": "Nom de la commune",
+            "valeur_fonciere": st.column_config.NumberColumn(
+                "Valeur foncière",
+                format="%.0f €",
+            ),
+            "surface_reelle_bati": st.column_config.NumberColumn(
+                "Surface réelle bâtie",
+                format="%.0f m²",
+            ),
+            "prix_m2": st.column_config.NumberColumn(
+                "Prix au m²",
+                format="%.0f €/m²",
+            ),
+            "latitude": st.column_config.NumberColumn("Latitude", format="%.5f"),
+            "longitude": st.column_config.NumberColumn("Longitude", format="%.5f"),
+            "year": st.column_config.NumberColumn("Année", format="%d"),
+            "month": st.column_config.NumberColumn("Mois", format="%d"),
+            "month_name": "Nom du mois",
+        },
         use_container_width=True,
         height=400
     )
@@ -470,7 +637,7 @@ def create_data_table(df):
     # Download button
     csv = filtered_df.to_csv(index=False)
     st.download_button(
-        label="📥 Download Filtered Data as CSV",
+        label="Télécharger les données filtrées au format CSV",
         data=csv,
         file_name='dvf_filtered_data.csv',
         mime='text/csv'
@@ -480,34 +647,34 @@ def create_data_table(df):
 def create_methodology_section():
     """Create methodology documentation."""
     
-    st.header("📚 Methodology")
+    st.header("Méthodologie")
     
     st.markdown("""
-    - **Dataset:** DVF (Demandes de Valeurs Foncières)
-    - **Source:** data.gouv.fr
-    - **License:** Licence Ouverte 2.0
-    - **Coverage:** 5 départements (75, 13, 69, 31, 44) — Paris, Marseille, Lyon, Toulouse, Nantes
-    - **Period:** 2021-2024
-    - **Volume:** 557k transactions nettoyées (sur 1,79M brutes)
+    - **Jeu de données :** DVF (Demandes de Valeurs Foncières)
+    - **Source :** data.gouv.fr
+    - **Licence :** Licence Ouverte 2.0
+    - **Périmètre :** 5 départements (75, 13, 69, 31, 44) — Paris, Marseille, Lyon, Toulouse, Nantes
+    - **Période :** 2021-2024
+    - **Volume :** 557 000 transactions nettoyées (sur 1,79 M brutes)
     
-    ### Data Cleaning Steps
-    1. **Filter transactions:** Keep only sales (not VEFA, exchanges)
-    2. **Property types:** Apartments and houses only
-    3. **Surface validation:** 9m² to 500m² range
-    4. **Price validation:** 10,000€ to 10,000,000€ range
-    5. **Outlier removal:** 3-sigma rule by commune
-    6. **Price calculation:** Price per square meter
+    ### Étapes de nettoyage des données
+    1. **Filtrage des transactions :** conservation des ventes uniquement (hors VEFA et échanges)
+    2. **Types de biens :** appartements et maisons uniquement
+    3. **Validation des surfaces :** plage de 9 m² à 500 m²
+    4. **Validation des prix :** plage de 10 000 € à 10 000 000 €
+    5. **Suppression des valeurs aberrantes :** règle des 3 sigma par commune
+    6. **Calcul du prix :** prix au mètre carré
     
-    ### Statistical Methods
-    - **Central tendency:** Median (robust to outliers)
-    - **Dispersion:** Standard deviation, percentiles
-    - **Time series:** Year-over-year growth rates
-    - **Geographic analysis:** Spatial aggregation by commune
+    ### Méthodes statistiques
+    - **Tendance centrale :** médiane (robuste aux valeurs aberrantes)
+    - **Dispersion :** écart-type et percentiles
+    - **Séries temporelles :** taux de croissance annuels
+    - **Analyse géographique :** agrégation spatiale par commune
     
-    ### Tools Used
-    - **Python:** pandas, numpy, plotly
-    - **Dashboard:** Streamlit
-    - **Visualization:** Plotly Express
+    ### Outils utilisés
+    - **Python :** pandas, numpy, plotly
+    - **Tableau de bord :** Streamlit
+    - **Visualisation :** Plotly Express
     """)
 
 
@@ -517,21 +684,21 @@ def create_footer():
     st.divider()
     
     st.markdown("""
-    ### 👤 About This Project
+    ### À propos de ce projet
     
-    This dashboard was created as a **portfolio project** for a Malt.fr data analyst profile.
+    Ce tableau de bord a été créé comme **projet de portfolio** pour un profil d'analyste de données sur Malt.fr.
     
-    **Skills Demonstrated:**
-    - Data acquisition from official APIs
-    - Data cleaning and preprocessing
-    - Statistical analysis
-    - Interactive data visualization
-    - Business insight generation
+    **Compétences mises en œuvre :**
+    - Acquisition de données depuis des API officielles
+    - Nettoyage et prétraitement des données
+    - Analyse statistique
+    - Visualisation interactive des données
+    - Production d'analyses métier
     
-    **Contact :** profil Malt.fr — Data Analyst / Data Scientist Freelance (région parisienne, bilingue FR/EN)
+    **Contact :** profil Malt.fr — Analyste de données / Scientifique des données freelance (région parisienne, bilingue FR/EN)
     
     ---
-    *Data source: data.gouv.fr | Analysis: Python | Dashboard: Streamlit*
+    *Source des données : data.gouv.fr | Analyse : Python | Tableau de bord : Streamlit*
     """)
 
 
