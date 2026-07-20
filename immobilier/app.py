@@ -20,39 +20,28 @@ import sys
 DATA_DIR = Path("data")
 
 
-@st.cache_data
+@st.cache_data(show_spinner="Loading 557k transactions...")
 def load_data():
-    """Load and cache the cleaned data."""
-    clean_files = list(DATA_DIR.glob("*_clean.csv*"))
-    
-    if not clean_files:
-        st.error("❌ No cleaned data files found!")
-        st.info("Please run the data cleaning script first: `python 03_data_cleaning.py`")
-        st.stop()
-    
-    clean_files.sort(key=lambda x: x.stat().st_mtime, reverse=True)
-    data_file = clean_files[0]
-    
-    dtype_map = {
-        'code_commune': str,
-        'code_postal': str,
-        'type_local': 'category',
-        'nature_mutation': 'category',
-    }
-    
-    df = pd.read_csv(
-        data_file,
-        sep=',',
-        dtype=dtype_map,
-        parse_dates=['date_mutation'],
-        low_memory=False
-    )
-    
+    """Load slim parquet (9 columns, ~51 MB in memory) — fits Streamlit Cloud 1 GB limit."""
+    parquet_path = DATA_DIR / "dvf_slim.parquet"
+    if not parquet_path.exists():
+        # Fallback: try CSV.gz (for local dev without the slim parquet)
+        clean_files = list(DATA_DIR.glob("*_clean.csv*"))
+        if not clean_files:
+            st.error("❌ No data files found!")
+            st.info("Run `python 03_data_cleaning.py` then `python 04_analysis.py` first.")
+            st.stop()
+        clean_files.sort(key=lambda x: x.stat().st_mtime, reverse=True)
+        df = pd.read_csv(clean_files[0], dtype={'type_local': 'category'},
+                         parse_dates=['date_mutation'], low_memory=False)
+    else:
+        df = pd.read_parquet(parquet_path)
+
     # Add time columns
-    df['year'] = df['date_mutation'].dt.year
-    df['month'] = df['date_mutation'].dt.month
-    df['month_name'] = df['date_mutation'].dt.strftime('%B')
-    
+    df['year'] = pd.to_datetime(df['date_mutation']).dt.year
+    df['month'] = pd.to_datetime(df['date_mutation']).dt.month
+    df['month_name'] = pd.to_datetime(df['date_mutation']).dt.strftime('%B')
+
     return df
 
 

@@ -40,7 +40,7 @@ env/
 # Data files (large — ignore raw, keep cleaned for Streamlit Cloud deploy)
 data/*
 !data/dvf_clean.csv.gz
-*.parquet
+# *.parquet (allow slim parquet for deploy)
 *.json
 *.xlsx
 *.xls
