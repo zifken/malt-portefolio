@@ -37,10 +37,9 @@ env/
 # Jupyter Notebook
 .ipynb_checkpoints/
 
-# Data files (large — ignore raw, keep cleaned for Streamlit Cloud deploy)
+# Data files (large — ignore raw, keep slim parquet for Streamlit Cloud deploy)
 data/*
-!data/dvf_clean.csv.gz
-# *.parquet (allow slim parquet for deploy)
+!data/dvf_slim.parquet
 *.json
 *.xlsx
 *.xls
