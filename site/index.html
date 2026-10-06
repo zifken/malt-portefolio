@@ -32,7 +32,7 @@
   <h2 data-i18n="projects_h2">Selected projects</h2>
 
   <article class="case" id="case-decp">
-    <h3><a href="../case-studies/decp/">DECP Radar — French public-contract analytics</a></h3>
+    <h3><a href="case-studies/decp/">DECP Radar — French public-contract analytics</a></h3>
     <p data-i18n="decp_p">
       Pipeline over the DECP dataset (French public procurement, data.gouv.fr):
       stdlib-only ingestion with watermarking and dedupe (~750 notices/week, fields
@@ -46,7 +46,7 @@
   </article>
 
   <article class="case" id="case-sia">
-    <h3><a href="../case-studies/sia/">Sia — control client for a self-hosted Hermes agent</a></h3>
+    <h3><a href="case-studies/sia/">Sia — control client for a self-hosted Hermes agent</a></h3>
     <p data-i18n="sia_p">
       Fork of the upstream Android client, hardened for one specific operator flow:
       30+ Jetpack Compose screens, WebSocket JSON-RPC + REST transport, offline
@@ -59,7 +59,7 @@
   </article>
 
   <article class="case" id="case-freebox">
-    <h3><a href="../case-studies/freebox-api/">Freebox control — the router as an API</a></h3>
+    <h3><a href="case-studies/freebox-api/">Freebox control — the router as an API</a></h3>
     <p data-i18n="freebox_p">
       Scriptable control of a Freebox ISP router: a library of proven recipes
       where each one documents the failure it overcame — the API version is only
@@ -72,7 +72,7 @@
   </article>
 
   <article class="case" id="case-kbtyp">
-    <h3><a href="../case-studies/kb-typ/">kb-typ — print-grade PDF deliverables from source</a></h3>
+    <h3><a href="case-studies/kb-typ/">kb-typ — print-grade PDF deliverables from source</a></h3>
     <p data-i18n="kbtyp_p">
       A Typst-based document system, defined once and instantiated per deliverable:
       A4 page system with numbered headings, auto outline, cover, callout blocks,
@@ -80,9 +80,22 @@
       generated upstream (plotnine) and referenced by path so a data refresh
       regenerates the PDF unchanged. Single-command compile, with bounding-box
       verification of every image and label before delivery. Client deliverables
-      are withheld; a generic sample can be produced on request.
+      are withheld; the reusable template is public:
+      <a href="https://github.com/zifken/typst-report-template">zifken/typst-report-template</a>.
     </p>
     <p class="meta">Typst · Python · PDF · bilingual FR/EN</p>
+  </article>
+
+  <article class="case" id="case-opendata">
+    <h3>Open-data dashboards — three Streamlit apps on French public data</h3>
+    <p data-i18n="opendata_p">
+      Earlier portfolio work, all open data (data.gouv.fr, Etalab Licence Ouverte):
+      DVF real-estate transactions (557k sales, 5 metro areas, 2021-2024), fuel prices
+      (9,800 stations, three sources combined), and public procurement (1.92M contracts).
+      Source code lives in this repository under immobilier/, carburants/ and
+      marches-publics/; each app deploys individually on Streamlit Community Cloud.
+    </p>
+    <p class="meta">Python · Streamlit · pandas · open data</p>
   </article>
 </section>
 
@@ -99,7 +112,7 @@
 
 <section id="contact">
   <h2 data-i18n="contact_h2">Contact</h2>
-  <p data-i18n="contact_p">Address to replace before publication.</p>
+  <p data-i18n="contact_p">Email: <a href="mailto:kenziferaoun@proton.me">kenziferaoun@proton.me</a></p>
 </section>
 </main>
 

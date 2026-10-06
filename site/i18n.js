@@ -15,8 +15,9 @@ const I18N = {
     skills_android: "Android : Kotlin, Jetpack Compose, Room, CI/release Gradle",
     skills_ops: "Ops : Linux, Podman, API routeur & homelab, Tailscale",
     skills_it: "IT : dix ans d'exploitation — reconditionnement, diagnostic, gestion de parc",
+    opendata_p: "Travaux antérieurs du portfolio, tous en données ouvertes (data.gouv.fr, Licence Ouverte Etalab) : transactions immobilières DVF (557k ventes, 5 métropoles, 2021-2024), prix des carburants (9 800 stations, trois sources combinées) et commande publique (1,92 M de contrats). Le code source vit dans ce dépôt sous immobilier/, carburants/ et marches-publics/ ; chaque appli se déploie individuellement sur Streamlit Community Cloud.",
     contact_h2: "Contact",
-    contact_p: "Adresse à remplacer avant publication.",
+    contact_p: "Email : kenziferaoun@proton.me",
     footer_note: "Site statique, sans traceur, sans étape de build."
   }
 };
