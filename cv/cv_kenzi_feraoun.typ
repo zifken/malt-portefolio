@@ -16,13 +16,13 @@
 #align(center)[
   #text(size: 17pt, weight: 700)[Kenzi Feraoun]
   #v(2pt)
-  #text(size: 10.5pt, fill: rgb("#555"))[Data & IT — pipelines, outils, dashboards]
+  #text(size: 10.5pt, fill: rgb("#555"))[Consultant informatique & data — PME : systèmes, réseaux, données]
   #v(2pt)
   #text(size: 8.8pt, fill: rgb("#555"))[Malakoff (92) · 06 95 59 28 81 · kenziferaoun\@proton.me · zifken.github.io/malt-portefolio]
 ]
 
 == Profil
-Construction de pipelines de données et d'outils qui tiennent debout : ingestion, qualité mesurée, dashboards, documentation. Bagage scientifique (chimie, niveau M1, Sorbonne Université) et dix ans d'exploitation IT (reconditionnement, homelab, automatisation). Je livre de bout en bout : données en entrée, dashboard en sortie.
+Consultant informatique pour des PME depuis 2019 : installations, réseaux, gestion de parc, sauvegardes, solutions d'auto-hébergement — avec une spécialisation data de bout en bout (pipelines, qualité mesurée, dashboards). Bagage scientifique (M1 chimie, Sorbonne Université). Je mets en place des systèmes qui tiennent en production, documentés, récupérables.
 
 #sec[Expériences]
 
@@ -33,11 +33,12 @@ Construction de pipelines de données et d'outils qui tiennent debout : ingestio
 #job[Sept. 2025 – juin 2026][Enseignant en programmation][Funtech Adventure, Paris]
 - Ateliers hebdomadaires de code (6–10 ans) dans plusieurs écoles (École Jeannine Manuel, Union School) ; coordination avec les équipes pédagogiques.
 
-#job[Depuis 2019][Consultant informatique & data][Indépendant, Paris]
-- Pipeline DECP (commande publique, data.gouv.fr) : ingestion stdlib (~750 avis/semaine, champs remplis à 99,7%), reconstruction consolidée 2019–2026 (1,36 M de marchés), fenêtre de re-tender de 55 957 marchés, dashboard Streamlit.
-- Outils homelab : contrôle d'une Freebox par API, watchdogs, clients mobiles (fork Android Kotlin, 2 495 tests passants).
-- Système documentaire Typst : PDF print-grade bilingues FR/EN générés depuis la source.
-- Dépannage, formation et conseil (public 21–79 ans).
+#job[Depuis 2019][Consultant informatique & data — PME][Indépendant, Paris]
+- *Infra & exploitation* : installation et déploiement de postes et serveurs Linux/Windows, réseaux locaux (câblage, Wi-Fi, VPN inter-sites), gestion de parc (inventaire, masterisation, renouvellement).
+- *Continuité* : mise en place de solutions de sauvegarde automatisées avec restauration testée ; auto-hébergement de services (Nextcloud, fichiers, agendas).
+- *Data* : reporting et pipelines Python pour PME ; pipeline DECP (commande publique, data.gouv.fr) — ingestion stdlib (~750 avis/semaine, champs remplis à 99,7%), consolidation 2019–2026 (1,36 M de marchés), dashboard Streamlit.
+- *Développement* : contrôle d'une Freebox par API, watchdogs, client mobile Android (fork Kotlin, 2 495 tests passants) ; chaîne d'autoédition de documents Typst (PDF print-grade, FR/EN).
+- Dépannage, formation et conseil utilisateurs.
 
 #job[Mai – juil. 2019][Stagiaire en recherche][Lab. de Chimie Théorique, Sorbonne Université]
 - Analyse DFT de molécules radicalaires ; interfaces graphiques et traitements de données pour un simulateur de réactions adiabatiques.
@@ -50,10 +51,11 @@ Construction de pipelines de données et d'outils qui tiennent debout : ingestio
 #job[2017 – 2020][Licence de Chimie][Sorbonne Université, Paris]
 
 #sec[Compétences]
+- *Infra* : réseaux LAN/VPN, gestion de parc, sauvegardes/restauration, auto-hébergement (Nextcloud)
+- *Ops* : Linux, Podman, API routeur/homelab, Tailscale, Git
 - *Data* : Python (pandas, plotnine), Streamlit, DuckDB/Parquet, Neo4j, SQL, cron
 - *Docs* : Typst (PDF print-grade, bilingue FR/EN)
 - *Android* : Kotlin, Jetpack Compose, Room, CI Gradle
-- *Ops* : Linux, Podman, API routeur/homelab, Tailscale, Git
 
 #sec[Langues]
 Français langue maternelle · Anglais courant
