@@ -12,25 +12,15 @@
     <span class="brand">Kenzi Feraoun</span>
     <span class="spacer"></span>
     <a href="#projects" data-i18n="nav_projects">Projets</a>
-    <a href="#skills" data-i18n="nav_skills">Compétences</a>
     <a href="#contact" data-i18n="nav_contact">Contact</a>
     <button id="lang" type="button">EN</button>
   </nav>
 </header>
 
 <main>
-<section id="intro">
-  <h1 data-i18n="intro_h1">Je transforme les données de marchés publics en opportunités d'appels d'offres</h1>
-  <p data-i18n="intro_p">
-    Je construis des pipelines et des outils data qui tiennent debout : Python,
-    pandas, Streamlit, Neo4j, Linux. Derrière, dix ans d'exploitation IT
-    (reconditionnement, homelab, automatisation) — et je livre de bout en bout :
-    données en entrée, dashboard en sortie, documentation incluse.
-  </p>
-</section>
 
 <section id="projects">
-  <h2 data-i18n="projects_h2">Projets choisis</h2>
+  <h2 data-i18n="projects_h2">DECP Radar — analyses sur la commande publique française</h2>
 
   <article class="case" id="case-decp">
     <h3><a href="case-studies/decp/fr/" data-href-en="case-studies/decp/">DECP Radar — analyses sur la commande publique française</a></h3>
@@ -47,61 +37,13 @@
     <p class="readlink"><a href="case-studies/decp/fr/" data-href-en="case-studies/decp/">Étude de cas</a></p>
   </article>
 
-  <article class="case" id="case-sia">
-    <h3><a href="case-studies/sia/fr/" data-href-en="case-studies/sia/">Sia — client de contrôle pour un agent Hermes auto-hébergé</a></h3>
-    <p data-i18n="sia_p">
-      Fork du client Android officiel, durci pour un flux opérateur précis : 30+ écrans
-      Jetpack Compose, transport WebSocket JSON-RPC + REST, historique hors-ligne en
-      Room, pipeline de release signée avec métadonnées F-Droid. La voix est en
-      push-to-talk uniquement : transcription Whisper côté serveur, le texte remplit la
-      zone de saisie, jamais envoyé automatiquement. La STT embarquée d'origine
-      dead-lockait — deux tentatives A/B documentées, puis retrait. 2 495 tests passants.
-    </p>
-    <p class="meta">Kotlin · Jetpack Compose · Room · WebSocket JSON-RPC · Gradle CI</p>
-    <p class="readlink"><a href="https://github.com/zifken/hermes-mobile/blob/master/README.fr.md">README</a></p>
-  </article>
-
-  <article class="case" id="case-freebox">
-    <h3><a href="case-studies/freebox-api/fr/" data-href-en="case-studies/freebox-api/">Freebox — le routeur comme une API</a></h3>
-    <p data-i18n="freebox_p">
-      Contrôle scriptable d'une Freebox : une bibliothèque de recettes éprouvées où
-      chacune documente l'échec qu'elle a surmonté — la version de l'API n'est
-      découverte que dans le JavaScript de l'appli web du routeur, les en-têtes CSRF
-      documentés ne fonctionnent pas pour les POST de session (le contexte Ajax interne,
-      oui), et un PUT partiel réinitialise silencieusement les champs omis de la config
-      Wi-Fi. Inclut le listing LAN, le Wake-on-LAN et le diagnostic DFS (radar) de la
-      bande 5 GHz.
-    </p>
-    <p class="meta">Python · HTTP API · homelab ops</p>
-    <p class="readlink"><a href="case-studies/freebox-api/fr/" data-href-en="case-studies/freebox-api/">README</a></p>
-  </article>
-
-  <article class="case" id="case-kbtyp">
-    <h3><a href="case-studies/kb-typ/fr/" data-href-en="case-studies/kb-typ/">kb-typ — livrables PDF print-grade depuis la source</a></h3>
-    <p data-i18n="kbtyp_p">
-      Un système documentaire basé sur Typst, défini une fois et instancié par
-      livrable : système de page A4 avec titres numérotés, sommaire automatique,
-      couverture, encadrés, tableaux thémés, blocs figures ; bilingue FR/EN depuis la
-      même source ; figures générées en amont (plotnine) et référencées par chemin, pour
-      qu'un rafraîchissement de données régénère le PDF à l'identique. Compilation en
-      une commande, avec vérification bounding-box de chaque image et libellé avant
-      livraison. Les livrables clients sont confidentiels ; un échantillon générique
-      peut être produit sur demande : <a href="https://github.com/zifken/typst-report-template">zifken/typst-report-template</a>.
-    </p>
-    <p class="meta">Typst · Python · PDF · bilingue FR/EN</p>
-    <p class="readlink"><a href="https://github.com/zifken/typst-report-template/blob/master/README.fr.md">README</a></p>
-  </article>
-
 </section>
 
 <section id="skills">
   <h2 data-i18n="skills_h2">Compétences</h2>
   <ul>
-    <li data-i18n="skills_data"><strong>Data</strong> : Python (pandas, plotnine), Streamlit, DuckDB/Parquet, Neo4j, pipelines et automatisation cron</li>
-    <li data-i18n="skills_docs"><strong>Documents</strong> : système PDF print-grade Typst, livrables bilingues FR/EN</li>
-    <li data-i18n="skills_android"><strong>Android</strong> : Kotlin, Jetpack Compose, Room, CI/release Gradle</li>
-    <li data-i18n="skills_ops"><strong>Ops</strong> : Linux, Podman, API routeur &amp; homelab, Tailscale</li>
-    <li data-i18n="skills_it"><strong>IT</strong> : dix ans d'exploitation — reconditionnement, diagnostic, gestion de parc</li>
+    <li data-i18n="skills_data"><strong>Data</strong> : Python (pandas, plotnine), Streamlit, DuckDB/Parquet, pipelines et automatisation cron</li>
+    <li data-i18n="skills_docs"><strong>Livrables</strong> : rapports PDF print-grade Typst depuis la même source que les données, bilingue FR/EN</li>
   </ul>
 </section>
 
