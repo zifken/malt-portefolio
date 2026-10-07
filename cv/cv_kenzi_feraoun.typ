@@ -4,7 +4,7 @@
 #set par(justify: false, leading: 0.55em)
 
 #let job(when, title, place) = grid(
-  columns: (4.3cm, 1fr), column-gutter: 10pt,
+  columns: (3.5cm, 1fr), column-gutter: 10pt,
   [#text(size: 8.2pt, fill: rgb("#555"), when)],
   [*#title* — #text(size: 8.8pt, fill: rgb("#555"), place)]
 )
