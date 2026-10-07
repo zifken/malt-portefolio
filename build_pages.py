@@ -63,7 +63,7 @@ PAGE = """<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} — Kenzi Feraoun</title>
-<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../../style.css">
 </head>
 <body>
 <header>
@@ -77,7 +77,7 @@ PAGE = """<!DOCTYPE html>
 <main>
 {body}
 </main>
-<footer><span>Static site, no tracking.</span></footer>
+<footer><span>Static site, no tracking.</span> · <a href="https://github.com/zifken/malt-portefolio">Source on GitHub</a></footer>
 </body>
 </html>
 """
