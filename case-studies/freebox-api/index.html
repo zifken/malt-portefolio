@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Freebox control — Kenzi Feraoun</title>
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<header>
+  <nav>
+    <span class="brand"><a href="../../">Kenzi Feraoun</a></span>
+    <span class="spacer"></span>
+    <a href="../../#projects">Projects</a>
+    <a href="../../#contact">Contact</a>
+    <a href="fr/">Français</a>
+  </nav>
+</header>
+<main>
+<h1>Freebox control — the router as an API</h1>
+<p>Python (stdlib), HTTP API, cron. Runs on my home network. An operations case study, not a product.</p>
+<h2>The problem</h2>
+<p>The Freebox (Free's ISP router) exposes an HTTP API for LAN listing, Wake-on-LAN, Wi-Fi and port management. Three quirks make real control painful:</p>
+<ul><li>the API version is only discoverable from the web app's own JavaScript;</li><li>session-auth POSTs via the documented CSRF headers do not work;</li><li>Wi-Fi AP updates require full-record PUTs — send a partial record and the router silently resets the fields you omitted.</li></ul>
+<p>I wanted the router scriptable, like the rest of the homelab.</p>
+<h2>What I built</h2>
+<p>A skills library of proven recipes, each documenting the failure it overcame, not just the working command:</p>
+<ul><li>API path discovery: grep the router web app's freeboxos.min.js for the API version and endpoint map. The browser session is the ground truth for what the firmware actually serves.</li><li>Session control: the proven path is a POST through the in-page Ext.Ajax context of the router web UI — the same request the UI itself issues.</li><li>LAN host listing and Wake-on-LAN by MAC, with a parse step (MACs arrive HTML-anchored) so recipes are scriptable.</li><li>Wi-Fi AP configuration: the PUT must carry the full record. A diagnostic recipe documents the partial-PUT reset behavior so it never bites again.</li><li>DFS diagnosis: after a reboot the 5 GHz SSID can stay invisible because of dfs_cac (Dynamic Frequency Selection, radar-checking, up to 600 s). One recipe reads AP status, presence, dfs_cac status, and names that mode in one pass.</li></ul>
+</main>
+<footer><span>Static site, no tracking.</span> · <a href="https://github.com/zifken/malt-portefolio">Source on GitHub</a></footer>
+</body>
+</html>

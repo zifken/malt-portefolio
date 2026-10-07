@@ -1,0 +1,228 @@
+======================================================================
+DECP PUBLIC PROCUREMENT — ANALYSIS REPORT
+======================================================================
+=== MARKET OVERVIEW ===
+Total markets (current, valid amount): 1,919,987
+Total awarded (€M, excl. outliers): 3,196,620
+Unique winners (named): 152,037
+Unique buyers (named): 26,409
+Median market value (€): 125,000
+
+Yearly trend (2018-2026):
+  year      n    total_eur  median_eur  total_eur_m
+2018.0  21250 2.520946e+10     88000.0      25209.0
+2019.0 138528 1.127927e+11     78138.0     112793.0
+2020.0 182853 2.222429e+11     92461.0     222243.0
+2021.0 242852 3.889441e+11    120000.0     388944.0
+2022.0 268992 5.462303e+11    139958.0     546230.0
+2023.0 277699 5.422393e+11    144703.0     542239.0
+2024.0 301957 4.284693e+11    120511.0     428469.0
+2025.0 309586 6.594521e+11    138875.0     659452.0
+2026.0 176270 2.710396e+11    172000.0     271040.0
+
+By contract type:
+          type      n    total_eur  median_eur
+   Fournitures 439806 8.156354e+11    104400.0
+Non catégorisé   4373 2.652404e+09    101112.0
+      Services 712884 1.349241e+12    119920.0
+       Travaux 762924 1.029091e+12    147015.0
+
+=== VENDOR CONCENTRATION ===
+Winners total: 151,998
+HHI (winner concentration): 11  (>2500 = highly concentrated)
+Top 1% winners capture 66.7% of spend
+Top 5% winners capture 88.1% of spend
+Top 10% winners capture 93.7% of spend
+
+Top 10 vendors by value:
+                                        titulaire_nom    n  total_eur
+                                               ORANGE 2373    29995.7
+    SOCIETE FRANCAISE DU RADIOTELEPHONE - S.F.R (SFR) 1760    25324.8
+                                                ENGIE 2418    24835.0
+SCC FRANCE (SCC. SCC DIRECT. SCC EXCHANGE. SCC STORE) 1163    23529.7
+                      SYMCHOWICZ-WEISSBERG & ASSOCIES   92    21630.0
+                                            RAZEL-BEC  876    20396.0
+                           ADDEN AVOCATS MEDITERRANEE   72    18821.4
+                                    SEBAN ET ASSOCIES  473    18171.2
+                                ELECTRICITE DE FRANCE 2638    17064.6
+                             ORANGE BUSINESS SERVICES 1103    16035.0
+
+=== SME vs LARGE (titulaire_categorie) ===
+titulaire_categorie       n    total_eur  count_share  value_share
+                ETI  390598 8.168118e+11         21.9         27.0
+                 GE  313026 9.567781e+11         17.6         31.7
+                PME 1077761 1.249223e+12         60.5         41.3
+
+
+PME value-share by buyer category (top/bottom):
+titulaire_categorie     pme_value_share
+acheteur_categorie                     
+Région                             64.5
+Département outre-mer              57.8
+Département                        48.5
+Commune                            47.7
+Groupement de communes             40.9
+EPIC                               33.6
+titulaire_categorie        pme_value_share
+acheteur_categorie                        
+Commune                               47.7
+Groupement de communes                40.9
+EPIC                                  33.6
+Établissement hospitalier             24.4
+État                                  21.8
+Syndicat mixte                        21.5
+
+=== COMPETITION & TRANSPARENCY ===
+Markets with known #offers: 728,022 (37.9% of all)
+Single-bid (exactly 1 offer) share: 22.7%
+
+Single-bid rate by procedure:
+                                                     procedure      n  single_bid_rate  avg_offers
+  Marché passé sans publicité ni mise en concurrence préalable  36107             84.5         2.2
+Marché négocié sans publicité ni mise en concurrence préalable    263             71.1         1.1
+                                      Appel d'offres restreint  12617             26.0        86.9
+                                             Procédure adaptée 349471             20.9         5.6
+                                    Procédure avec négociation  17622             20.4         7.2
+                                         Appel d'offres ouvert 239688             17.9        10.6
+                                           Dialogue compétitif   1042             11.7         3.8
+         Procédure négociée avec mise en concurrence préalable      4              0.0         1.5
+
+Single-bid rate by buyer category:
+       acheteur_categorie      n  single_bid_rate  avg_offers
+    Département outre-mer   1700             29.7         3.0
+                     État  14720             29.4         8.2
+                   Région  19064             26.5        12.6
+Établissement hospitalier  29595             25.2        18.2
+           Syndicat mixte  32831             22.9         4.3
+   Groupement de communes 128093             22.2         5.7
+                  Commune 244870             22.1         6.8
+              Département  59797             21.8         8.3
+
+Single-bid rate by contract type:
+          type      n  single_bid_rate  avg_offers
+   Fournitures 157177             28.7         8.4
+      Services 276637             26.5         9.9
+       Travaux 292173             16.1         9.0
+Non catégorisé   2035              0.7         6.1
+
+Buyers (>=200 known markets) with highest single-bid rate (top 10):
+                                                                          acheteur_nom     n  single_bid_rate
+                                                          COMMUNE DE LA HAGUE (MAIRIE)   398             77.4
+                                                              VAL DE SEINE AMENAGEMENT   264             74.2
+                                                     RESEAU DES ACHETEURS HOSPITALIERS 10506             71.7
+                                                        COMMUNE DE VERSAILLES (MAIRIE)   292             71.2
+                                     ETABLISSEMENT PUBLIC FONCIER LOCAL BEARN PYRENEES   402             70.1
+                                                              CA DU PAYS DE SAINT-OMER   323             68.4
+                                  COMMUNE DE MARSEILLE (DIRECTION RESSOURCES HUMAINES)  5280             66.0
+                                                           COMMUNE DE VIERZON (MAIRIE)   305             61.0
+SM D'INGENIERIE POUR LES COLLECTIVITES ET TERRITOIRES INNOVANTS DES ALPES-MEDITERRANEE   395             58.0
+                                                            COMMUNE DE TOULON (MAIRIE)   459             58.0
+
+=== GEOGRAPHY ===
+Spend by buyer region:
+       acheteur_region_nom      n  total_eur
+             Île-de-France 266947   846016.0
+Provence-Alpes-Côte d'Azur 171927   666904.0
+           Hauts-de-France 131442   352231.0
+      Auvergne-Rhône-Alpes 264918   315565.0
+                 Occitanie 209375   244909.0
+        Nouvelle-Aquitaine 164319   186669.0
+          Pays de la Loire 129191    94828.0
+                 Grand Est 139644    94303.0
+       Centre-Val de Loire  78856    71290.0
+                  Bretagne  96698    63171.0
+                 Normandie  88528    54245.0
+   Bourgogne-Franche-Comté  76492    44888.0
+                La Réunion  37264    44490.0
+                Martinique   7581    10327.0
+                   Mayotte   8196     9648.0
+                     Corse  13216     9351.0
+                Guadeloupe   7219     8980.0
+                    Guyane   4948     4348.0
+              Saint-Martin    815     1864.0
+          Saint-Barthélemy   1004     1089.0
+  Saint-Pierre-et-Miquelon    325      195.0
+       Polynésie française     99       15.0
+          Wallis-et-Futuna     13       14.0
+        Nouvelle-Calédonie     37        8.0
+
+Local capture (share of spend won by same-region vendors) by region:
+acheteur_region_nom
+Saint-Pierre-et-Miquelon      96.6
+Guadeloupe                    83.3
+Saint-Barthélemy              79.1
+La Réunion                    77.6
+Île-de-France                 76.4
+Corse                         74.4
+Hauts-de-France               73.3
+Martinique                    69.3
+Mayotte                       67.6
+Grand Est                     64.2
+Normandie                     59.2
+Guyane                        58.9
+Pays de la Loire              58.9
+Bretagne                      58.0
+Auvergne-Rhône-Alpes          57.3
+Occitanie                     56.3
+Centre-Val de Loire           54.3
+Nouvelle-Aquitaine            53.2
+Bourgogne-Franche-Comté       50.3
+Saint-Martin                  48.3
+Provence-Alpes-Côte d'Azur    47.7
+Nouvelle-Calédonie             0.0
+Polynésie française            0.0
+Wallis-et-Futuna               0.0
+
+Buyer-winner distance: median 40 km, 90th pct 448 km, mean 177 km
+
+=== CATEGORY CONCENTRATION (CPV divisions) ===
+Top CPV divisions by spend:
+cpv_div                 cpv_label      n  total_eur
+     45                   Travaux 762372  1029091.0
+     79     Éducation & formation  91662   317340.0
+     33       Médical & pharmacie  68726   208032.0
+     80            Action sociale  22193   197593.0
+     71 Architecture & ingénierie 226605   158716.0
+     90             Environnement  67159   110239.0
+     72    Services informatiques  39589   109781.0
+     64           Poste & télécom   9505    91511.0
+     60                 Transport  36368    88865.0
+     32           Télécom & radio  15373    87745.0
+     09      Énergie & carburants  23434    74353.0
+     50  Réparation & maintenance  61553    72613.0
+
+Most concentrated CPV divisions (HHI, min 20 winners):
+        cpv_label  n_winners    hhi  top1_share
+           CPV 78         98 4516.0        48.0
+           CPV  7         52 4025.0        62.0
+           CPV 67         23 3235.0        52.0
+           CPV 40        259 2422.0        45.0
+      Métallurgie        795 2038.0        32.0
+           CPV 54         27 1875.0        39.0
+           CPV Tr         28 1535.0        34.0
+           CPV 17         22 1466.0        32.0
+Armes & munitions         25 1390.0        29.0
+           CPV 47         21 1274.0        30.0
+
+=== ANOMALY / ATTENTION LIST ===
+Definition: high-value markets that are also single-bid and sit far above
+their category median. These warrant a closer look (not a fraud allegation).
+
+Flagged markets: 200 (high value + single-bid + >20x category median)
+Top 15 by value (€M, multiple of category median):
+                                    acheteur_nom                                          titulaire_nom titulaire_categorie  montant_M  offresRecues  x_median
+   UNION DES GROUPEMENTS D'ACHATS PUBLICS (UGAP)                            BUREAU VERITAS EXPLOITATION                  GE      870.0           1.0    8093.0
+                           CA DU CENTRE LITTORAL                                    SECHE ENVIRONNEMENT                 ETI      841.5           1.0    5724.0
+               RESEAU DES ACHETEURS HOSPITALIERS                          JOHNSON & JOHNSON MEDICAL SAS                  GE      800.0           1.0    8410.0
+   UNION DES GROUPEMENTS D'ACHATS PUBLICS (UGAP)                                               TECHNAMM                 PME      700.0           1.0    6482.0
+                       COMMUNE DE MURET (MAIRIE)                          ECONOCOM PRODUCTS & SOLUTIONS                 ETI      700.0           1.0    6300.0
+           TUNNEL EURALPIN LYON TURIN (TELT SAS)                                                   None                None      648.2           1.0    4409.0
+       CENTRE HOSPITALIER UNIVERSITAIRE DE LILLE                                     ALNYLAM FRANCE SAS                 ETI      601.5           1.0    6323.0
+                          REGION HAUTS-DE-FRANCE                                      SOC DANIEL DEVRED                 PME      601.0           1.0    4279.0
+COMMUNAUTE D'AGGLOMERATION ROISSY PAYS DE FRANCE      SOCIETE FRANCAISE DU RADIOTELEPHONE - S.F.R (SFR)                  GE      600.0           1.0    3125.0
+                 COMMUNE DE SAINT-DENIS (MAIRIE)      SOCIETE FRANCAISE DU RADIOTELEPHONE - S.F.R (SFR)                  GE      600.0           1.0    3616.0
+COMMUNAUTE D'AGGLOMERATION ROISSY PAYS DE FRANCE                                                 ORANGE                  GE      600.0           1.0    3125.0
+                       COMMUNE DE MURET (MAIRIE)  SCC FRANCE (SCC. SCC DIRECT. SCC EXCHANGE. SCC STORE)                 ETI      600.0           1.0    5400.0
+COMMUNAUTE D'AGGLOMERATION ROISSY PAYS DE FRANCE                                                  LINKT                 ETI      600.0           1.0    3125.0
+CENTRE HOSPITALIER REGIONAL (CHR HOPITAL CIMIEZ) OFF AUDIT ENERG SCE INFORMA INSTRU SPECI (O A S I I S)                 PME      559.7           1.0    5207.0
+                      COMMUNE DE VESOUL (MAIRIE)                               ORANGE BUSINESS SERVICES                  GE      500.0           1.0    2604.0
