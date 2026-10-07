@@ -79,6 +79,7 @@ PAGE = """<!DOCTYPE html>
     <a href="{home}#projects">{nav_projects}</a>
     <a href="{home}#contact">{nav_contact}</a>
     <a href="{swap}">{swap_label}</a>
+{repo_nav}
   </nav>
 </header>
 <main>
@@ -95,22 +96,34 @@ T = {
 }
 
 CASES = {"decp": "DECP Radar", "sia": "Sia", "freebox-api": "Freebox control", "kb-typ": "kb-typ"}
+# Public repo per case study; None = repo still private, no repo link in nav yet.
+# Flipping a case to its public repo after publication is one dict entry.
+REPOS = {
+    "kb-typ": "https://github.com/zifken/typst-report-template",
+    # "decp": ..., "sia": ..., "freebox-api": ...  # add after repos go public
+}
 for slug, title in CASES.items():
     d = ROOT / "case-studies" / slug
+    repo = REPOS.get(slug)
+    repo_nav_en = f'    <a href="{repo}#readme">Repo</a>' if repo else ""
+    repo_nav_fr = f'    <a href="{repo}/blob/main/README.md">Dépôt</a>' if repo else ""
 
     # English page at case-studies/<slug>/
     md = (d / "README.md").read_text()
     body = md_to_html(md)
     p = T["en"] | dict(lang="en", title=title, css="../../style.css", home="../../",
-                       swap="fr/", body=body)
+                       swap="fr/", body=body, repo_nav=repo_nav_en)
     (d / "index.html").write_text(PAGE.format(**p))
     print(slug, "en ok", len(body))
 
-    # French page at case-studies/<slug>/fr/
-    frmd = (d / "README.fr.md").read_text()
-    body = md_to_html(frmd)
-    p = T["fr"] | dict(lang="fr", title=title, css="../../../style.css", home="../../../",
-                       swap="../", body=body)
-    (d / "fr").mkdir(exist_ok=True)
-    (d / "fr" / "index.html").write_text(PAGE.format(**p))
-    print(slug, "fr ok", len(body))
+    # French page at case-studies/<slug>/fr/ (only when a French readme exists)
+    if (d / "README.fr.md").exists():
+        frmd = (d / "README.fr.md").read_text()
+        body = md_to_html(frmd)
+        p = T["fr"] | dict(lang="fr", title=title, css="../../../style.css", home="../../../",
+                           swap="../", body=body, repo_nav=repo_nav_fr)
+        (d / "fr").mkdir(exist_ok=True)
+        (d / "fr" / "index.html").write_text(PAGE.format(**p))
+        print(slug, "fr ok", len(body))
+    else:
+        print(slug, "fr skipped (no README.fr.md)")

@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kenzi Feräoun — IT & Data freelance</title>
+<title>Kenzi Feraoun — IT & Data freelance</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header>
   <nav>
-    <span class="brand">Kenzi Feräoun</span>
+    <span class="brand">Kenzi Feraoun</span>
     <span class="spacer"></span>
     <a href="#projects" data-i18n="nav_projects">Projects</a>
     <a href="#skills" data-i18n="nav_skills">Skills</a>
@@ -32,7 +32,7 @@
   <h2 data-i18n="projects_h2">Selected projects</h2>
 
   <article class="case" id="case-decp">
-    <h3><a href="case-studies/decp/">DECP Radar — French public-contract analytics</a></h3>
+    <h3><a href="case-studies/decp/" data-href-fr="case-studies/decp/fr/">DECP Radar — French public-contract analytics</a></h3>
     <p data-i18n="decp_p">
       Pipeline over the DECP dataset (French public procurement, data.gouv.fr):
       stdlib-only ingestion with watermarking and dedupe (~750 notices/week, fields
@@ -43,10 +43,11 @@
       under 2 h/week of compute.
     </p>
     <p class="meta">Python · pandas · Streamlit · Parquet · plotnine · cron</p>
+    <p class="readlink"><a href="case-studies/decp/" data-href-fr="case-studies/decp/fr/">README</a></p>
   </article>
 
   <article class="case" id="case-sia">
-    <h3><a href="case-studies/sia/">Sia — control client for a self-hosted Hermes agent</a></h3>
+    <h3><a href="case-studies/sia/" data-href-fr="case-studies/sia/fr/">Sia — control client for a self-hosted Hermes agent</a></h3>
     <p data-i18n="sia_p">
       Fork of the upstream Android client, hardened for one specific operator flow:
       30+ Jetpack Compose screens, WebSocket JSON-RPC + REST transport, offline
@@ -56,10 +57,11 @@
       two documented A/B attempts, then removal. 2,495 tests passing.
     </p>
     <p class="meta">Kotlin · Jetpack Compose · Room · WebSocket JSON-RPC · Gradle CI</p>
+    <p class="readlink"><a href="case-studies/sia/" data-href-fr="case-studies/sia/fr/">README</a></p>
   </article>
 
   <article class="case" id="case-freebox">
-    <h3><a href="case-studies/freebox-api/">Freebox control — the router as an API</a></h3>
+    <h3><a href="case-studies/freebox-api/" data-href-fr="case-studies/freebox-api/fr/">Freebox control — the router as an API</a></h3>
     <p data-i18n="freebox_p">
       Scriptable control of a Freebox ISP router: a library of proven recipes
       where each one documents the failure it overcame — the API version is only
@@ -69,10 +71,11 @@
       DFS radar-check diagnosis for the 5 GHz band.
     </p>
     <p class="meta">Python · HTTP API · homelab ops</p>
+    <p class="readlink"><a href="case-studies/freebox-api/" data-href-fr="case-studies/freebox-api/fr/">README</a></p>
   </article>
 
   <article class="case" id="case-kbtyp">
-    <h3><a href="case-studies/kb-typ/">kb-typ — print-grade PDF deliverables from source</a></h3>
+    <h3><a href="case-studies/kb-typ/" data-href-fr="case-studies/kb-typ/fr/">kb-typ — print-grade PDF deliverables from source</a></h3>
     <p data-i18n="kbtyp_p">
       A Typst-based document system, defined once and instantiated per deliverable:
       A4 page system with numbered headings, auto outline, cover, callout blocks,
@@ -84,6 +87,7 @@
       <a href="https://github.com/zifken/typst-report-template">zifken/typst-report-template</a>.
     </p>
     <p class="meta">Typst · Python · PDF · bilingual FR/EN</p>
+    <p class="readlink"><a href="https://github.com/zifken/typst-report-template/blob/main/README.md" data-href-fr="https://github.com/zifken/typst-report-template/blob/main/README.md">README</a></p>
   </article>
 
 </section>
@@ -107,6 +111,8 @@
 
 <footer>
   <span data-i18n="footer_note">Static site, no tracking, no build step.</span>
+  <span> · </span>
+  <a href="https://github.com/zifken/malt-portefolio" data-i18n-href="footer_source">Source on GitHub</a>
 </footer>
 
 <script src="i18n.js"></script>
