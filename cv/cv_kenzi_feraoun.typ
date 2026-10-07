@@ -1,7 +1,7 @@
 // CV — Kenzi Feraoun, version data (portfolio). FR.
-#set page(paper: "a4", margin: (x: 1.7cm, y: 1.7cm))
-#set text(font: "DejaVu Sans", size: 9.4pt, lang: "fr")
-#set par(justify: false, leading: 0.62em)
+#set page(paper: "a4", margin: (x: 1.7cm, y: 1.4cm))
+#set text(font: "DejaVu Sans", size: 9.1pt, lang: "fr")
+#set par(justify: false, leading: 0.55em)
 
 #let job(when, title, place) = grid(
   columns: (4.3cm, 1fr), column-gutter: 10pt,
