@@ -17,7 +17,8 @@ const I18N = {
     skills_it: "IT : dix ans d'exploitation — reconditionnement, diagnostic, gestion de parc",
     contact_h2: "Contact",
     contact_p: "Email : kenziferaoun@proton.me",
-    footer_note: "Site statique, sans traceur, sans étape de build."
+    footer_note: "Site statique, sans traceur, sans étape de build.",
+    footer_source: "Source sur GitHub"
   }
 };
 let lang = "en";
@@ -32,6 +33,14 @@ function apply() {
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const v = I18N.fr[el.dataset.i18n];
     if (v) el.textContent = v;
+  });
+  document.querySelectorAll("[data-i18n-href]").forEach(el => {
+    const v = I18N.fr[el.dataset.i18nHref];
+    if (v) el.textContent = v;
+  });
+  document.querySelectorAll("a[data-href-fr]").forEach(el => {
+    if (!el.dataset.hrefEn) el.dataset.hrefEn = el.getAttribute("href");
+    el.setAttribute("href", el.dataset.hrefFr);
   });
 }
 btn.addEventListener("click", () => { lang = lang === "en" ? "fr" : "en"; apply(); });
