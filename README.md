@@ -5,9 +5,8 @@ Source drafts for the freelance portfolio (data / IT). Static-site build lives i
 ## Case studies
 
 1. **[DECP Radar](case-studies/decp/README.md)** — analytics + weekly digest on French public procurement (Python, pandas, Streamlit, plotnine). Charts generated from the real pipeline data, French labels, text-clip verified.
-2. **[Sia](case-studies/sia/README.md)** — hardened Android control client for a self-hosted Hermes agent (Kotlin, Jetpack Compose, Room, CI). Rework in progress: Tailscale-client positioning + onboarding wizard.
-3. **[Freebox API control](case-studies/freebox-api/README.md)** — homelab ops: proven recipes for driving the Freebox router API (auth, CSRF, full-record PUTs, DFS).
-4. **[kb-typ](case-studies/kb-typ/README.md)** — Typst print-PDF deliverable system (methodology only; client deliverables withheld).
+
+(Sia, Freebox API and kb-typ case studies were removed 2026-10-07 — the site pivoted to data-centric, DECP Radar only.)
 
 ## Conventions
 
