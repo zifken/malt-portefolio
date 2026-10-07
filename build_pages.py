@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Build case-study HTML pages for the portfolio (run from repo root of malt-portefolio)."""
+"""Build case-study HTML pages for the portfolio (run from repo root of malt-portefolio).
+
+Builds, for each case study slug:
+  case-studies/<slug>/index.html      (English, from README.md)
+  case-studies/<slug>/fr/index.html   (French,  from README.fr.md)
+Each page carries a language swap link pointing at the other version.
+"""
 import re, pathlib
 
 ROOT = pathlib.Path.cwd()
@@ -58,34 +64,53 @@ def md_to_html(md):
     return "\n".join(out)
 
 PAGE = """<!DOCTYPE html>
-<html lang="en">
+<html lang="{lang}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title} — Kenzi Feraoun</title>
-<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="{css}">
 </head>
 <body>
 <header>
   <nav>
-    <span class="brand"><a href="../../">Kenzi Feraoun</a></span>
+    <span class="brand"><a href="{home}">Kenzi Feraoun</a></span>
     <span class="spacer"></span>
-    <a href="../../#projects">Projects</a>
-    <a href="../../#contact">Contact</a>
+    <a href="{home}#projects">{nav_projects}</a>
+    <a href="{home}#contact">{nav_contact}</a>
+    <a href="{swap}">{swap_label}</a>
   </nav>
 </header>
 <main>
 {body}
 </main>
-<footer><span>Static site, no tracking.</span> · <a href="https://github.com/zifken/malt-portefolio">Source on GitHub</a></footer>
+<footer><span>{footer_note}</span> · <a href="https://github.com/zifken/malt-portefolio">{footer_source}</a></footer>
 </body>
 </html>
 """
 
+T = {
+    "en": dict(nav_projects="Projects", nav_contact="Contact", footer_note="Static site, no tracking.", footer_source="Source on GitHub", swap_label="Français"),
+    "fr": dict(nav_projects="Projets", nav_contact="Contact", footer_note="Site statique, sans traceur.", footer_source="Source sur GitHub", swap_label="English"),
+}
+
 CASES = {"decp": "DECP Radar", "sia": "Sia", "freebox-api": "Freebox control", "kb-typ": "kb-typ"}
 for slug, title in CASES.items():
     d = ROOT / "case-studies" / slug
+
+    # English page at case-studies/<slug>/
     md = (d / "README.md").read_text()
     body = md_to_html(md)
-    (d / "index.html").write_text(PAGE.format(title=title, body=body))
-    print(slug, "ok", len(body))
+    p = T["en"] | dict(lang="en", title=title, css="../../style.css", home="../../",
+                       swap="fr/", body=body)
+    (d / "index.html").write_text(PAGE.format(**p))
+    print(slug, "en ok", len(body))
+
+    # French page at case-studies/<slug>/fr/
+    frmd = (d / "README.fr.md").read_text()
+    body = md_to_html(frmd)
+    p = T["fr"] | dict(lang="fr", title=title, css="../../../style.css", home="../../../",
+                       swap="../", body=body)
+    (d / "fr").mkdir(exist_ok=True)
+    (d / "fr" / "index.html").write_text(PAGE.format(**p))
+    print(slug, "fr ok", len(body))

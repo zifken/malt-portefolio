@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sia — Kenzi Feraoun</title>
+<link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<header>
+  <nav>
+    <span class="brand"><a href="../../">Kenzi Feraoun</a></span>
+    <span class="spacer"></span>
+    <a href="../../#projects">Projects</a>
+    <a href="../../#contact">Contact</a>
+    <a href="fr/">Français</a>
+  </nav>
+</header>
+<main>
+<h1>Sia — control client for a self-hosted Hermes agent</h1>
+<p>Kotlin, Jetpack Compose, Room, WebSocket JSON-RPC + REST, Gradle CI. Fork of upstream hermes-mobile, hardened and verified on device. A rework is in progress (see below).</p>
+<h2>The problem</h2>
+<p>I run my own Hermes AI agent on a home server. The upstream Android client did not fit how I want to drive the agent from a phone: voice input that behaves predictably, chat history that survives offline, onboarding that assumes you already run Tailscale and Hermes.</p>
+<p>So I forked it, renamed it Sia (com.sia.hermescontrol), and hardened it.</p>
+<h2>What I built</h2>
+<ul><li>A Jetpack Compose app, 30+ screens: chat, cron management, model selection, sidebars, settings. Room holds history so past conversations work offline.</li><li>Transport: WebSocket JSON-RPC to the live agent gateway, REST for CRUD (mailbox, cron, peers).</li><li>Voice, the hard part. The shipped on-device STT engine dead-locked on my devices with no error output; I documented two A/B attempts with the failure signatures, then removed the engine. The final design is push-to-talk, server-side Whisper (small, en-only), transcript fills the compose box — never auto-sent. Three gestures, each tuned: hold 150 ms or more appends, swipe-up sends, drag-left cancels.</li><li>Release engineering: Gradle CI, signed release APKs, F-Droid metadata.</li><li>2,495 tests passing across units and instrumentation at the last full run.</li></ul>
+<h2>Screenshots</h2>
+<p class='fig'><img src="images/chat.png" alt="figure"></p>
+<p class='fig'><img src="images/cron.png" alt="figure"></p>
+<p class='fig'><img src="images/model.png" alt="figure"></p>
+<p class='fig'><img src="images/sidebar-1.png" alt="figure"></p>
+<h2>Rework, in progress</h2>
+<p>The next iteration repositions Sia as "your Tailscale client for Hermes": an onboarding wizard that walks Tailscale API key, node discovery, first connection — instead of asking the user to hand-copy connection settings. The fork relationship is stated openly.</p>
+<h2>Details</h2>
+<ul><li>English page: <a href="./">./</a></li><li>Page en français : <a href="fr/">fr/</a></li></ul>
+<p>Private fork (zifken/hermes-mobile); the rework lands on a branch, publication decision to follow.</p>
+</main>
+<footer><span>Static site, no tracking.</span> · <a href="https://github.com/zifken/malt-portefolio">Source on GitHub</a></footer>
+</body>
+</html>
