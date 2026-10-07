@@ -17,7 +17,6 @@ const I18N = {
     skills_it: "IT : dix ans d'exploitation — reconditionnement, diagnostic, gestion de parc",
     contact_h2: "Contact",
     contact_p: "Email : kenziferaoun@proton.me",
-    contact_cv: "Télécharger mon CV (PDF)",
     footer_note: "Site statique, sans traceur, sans étape de build.",
     footer_source: "Source sur GitHub"
   }
