@@ -38,6 +38,7 @@ Consultant informatique pour des PME depuis 2019 : installations, réseaux, gest
 - *Continuité* : mise en place de solutions de sauvegarde automatisées avec restauration testée ; auto-hébergement de services (Nextcloud, fichiers, agendas).
 - *Data* : reporting et pipelines Python pour PME ; pipeline DECP (commande publique, data.gouv.fr) — ingestion stdlib (~750 avis/semaine, champs remplis à 99,7%), consolidation 2019–2026 (1,36 M de marchés), dashboard Streamlit.
 - *Développement* : contrôle d'une Freebox par API, watchdogs, client mobile Android (fork Kotlin, 2 495 tests passants) ; chaîne d'autoédition de documents Typst (PDF print-grade, FR/EN).
+- *Web* : sites et outils internes pour PME — backends Flask/Django, frontends htmx/Vue, de la maquette à la mise en ligne.
 - Dépannage, formation et conseil utilisateurs.
 
 #job[Mai – juil. 2019][Stagiaire en recherche][Lab. de Chimie Théorique, Sorbonne Université]
@@ -54,6 +55,7 @@ Consultant informatique pour des PME depuis 2019 : installations, réseaux, gest
 - *Infra* : réseaux LAN/VPN, gestion de parc, sauvegardes/restauration, auto-hébergement (Nextcloud)
 - *Ops* : Linux, Podman, API routeur/homelab, Tailscale, Git
 - *Data* : Python (pandas, plotnine), Streamlit, DuckDB/Parquet, Neo4j, SQL, cron
+- *Web* : Flask, Django, htmx, Vue, HTML/CSS/JS
 - *Docs* : Typst (PDF print-grade, bilingue FR/EN)
 - *Android* : Kotlin, Jetpack Compose, Room, CI Gradle
 
