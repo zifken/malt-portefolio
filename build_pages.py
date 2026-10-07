@@ -99,14 +99,16 @@ CASES = {"decp": "DECP Radar", "sia": "Sia", "freebox-api": "Freebox control", "
 # Public repo per case study; None = repo still private, no repo link in nav yet.
 # Flipping a case to its public repo after publication is one dict entry.
 REPOS = {
-    "kb-typ": "https://github.com/zifken/typst-report-template",
-    # "decp": ..., "sia": ..., "freebox-api": ...  # add after repos go public
+    "kb-typ": ("https://github.com/zifken/typst-report-template", "master"),
+    "decp": ("https://github.com/zifken/decp-analytics", "main"),
+    # "sia": ..., "freebox-api": ...  # stay private, never add
 }
 for slug, title in CASES.items():
     d = ROOT / "case-studies" / slug
     repo = REPOS.get(slug)
-    repo_nav_en = f'    <a href="{repo}#readme">Repo</a>' if repo else ""
-    repo_nav_fr = f'    <a href="{repo}/blob/main/README.md">Dépôt</a>' if repo else ""
+    repo_url, repo_branch = repo if repo else (None, None)
+    repo_nav_en = f'    <a href="{repo_url}#readme">Repo</a>' if repo_url else ""
+    repo_nav_fr = f'    <a href="{repo_url}/blob/{repo_branch}/README.fr.md">Dépôt</a>' if repo_url else ""
 
     # English page at case-studies/<slug>/
     md = (d / "README.md").read_text()
