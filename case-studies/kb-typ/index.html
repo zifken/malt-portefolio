@@ -19,12 +19,16 @@
 </header>
 <main>
 <h1>kb-typ — print-grade PDF deliverables from source</h1>
-<p>Typst, Python for asset generation, PDF output. In production use; the deliverables it produced are client work and are withheld here — no client content in this case study.</p>
+<p><strong>Stack:</strong> Typst, Python (asset generation), PDF output. Status: system in use; the concrete deliverables it produced are client work and are <strong>withheld</strong> here — this case study describes the system and the method, with no client content.</p>
 <h2>The problem</h2>
-<p>Client work often needs more than a report: a print-grade A4 PDF with numbered headings, callout boxes, themed tables, figures, a cover, auto outline — bilingual FR/EN — produced from source, reproducible, revisable without desktop publishing software. Hand-writing it in a word processor doesn't scale and isn't versionable; generic report tools don't reach print quality.</p>
-<h2>What I built</h2>
-<p>A Typst document system, defined once, instantiated per deliverable:</p>
-<ul><li>Page system: A4, consistent margins, custom heading styles with automatic numbering, auto outline, cover page.</li><li>Content primitives: callout blocks (info/warning), themed tables with striping, figure blocks with captions, code blocks.</li><li>Bilingual FR/EN: language-keyed content, the same source compiles either way.</li><li>Asset pipeline: figures are generated upstream (plotnine charts), referenced by path, so a data refresh regenerates the PDF with layout unchanged.</li><li>Output: single-command compile to a print-ready PDF, checked for clipped text (bounding-box verification of every image and label) before delivery.</li></ul>
+<p>Client work often needs a deliverable that is more than a report: a print-grade A4 PDF with numbered headings, callout boxes, themed tables, SVG figures, a cover, auto outline — bilingual FR/EN — produced <strong>from source</strong>, reproducible, and revisable without desktop publishing software. Writing it by hand in a word processor doesn't scale and isn't versionable; generic report tools don't reach print quality.</p>
+<h2>What was built</h2>
+<p>A Typst-based document system, defined once and instantiated per deliverable:</p>
+<ul><li><strong>Page system</strong>: A4, consistent margins, custom heading styles with automatic numbering, auto outline, cover page.</li><li><strong>Content primitives</strong>: callout blocks (info/warning), themed tables with striping, figure blocks with captions, code blocks.</li><li><strong>Bilingual FR/EN</strong>: language keyed content so the same source compiles either way — French labels/market material stays French, per the portfolio convention.</li><li><strong>Asset pipeline</strong>: figures are SVG/PNG generated upstream (e.g. plotnine charts), referenced by path, so a data refresh regenerates the PDF unchanged in layout.</li><li><strong>Output</strong>: single-command compile to a print-ready PDF, checked for <strong>clipped text</strong> (bounding-box verification of every image and label) before delivery.</li></ul>
+<h2>What I learned</h2>
+<ul><li><strong>Separate content from layout, for real.</strong> With the primitives defined, a new deliverable is content work only — layout regressions stop happening.</li><li><strong>Print quality is a layout budget.</strong> Typst's deterministic layout (no reflow surprises) is what makes bounding-box verification of every figure meaningful.</li><li><strong>Verification is part of the deliverable.</strong> "Every image checked for clipped text before use" is a rule that applies to the pipeline's own charts too.</li><li><strong>Reproducibility is the client deliverable.</strong> The client gets a PDF plus the ability to regenerate it — that is worth more than a one-off file.</li></ul>
+<h2>Scope note</h2>
+<p>The system exists and is in production use. The specific deliverables it produced are client-confidential; on request, a generic sample document built with the same system can be produced and published.</p>
 </main>
 <footer><span>Static site, no tracking.</span> · <a href="https://github.com/zifken/malt-portefolio">Source on GitHub</a></footer>
 </body>
