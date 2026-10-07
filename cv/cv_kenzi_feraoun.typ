@@ -5,7 +5,7 @@
 
 #let job(when, title, place) = grid(
   columns: (4.3cm, 1fr), column-gutter: 10pt,
-  align(right)[#text(size: 8.2pt, fill: rgb("#555"), when)],
+  [#text(size: 8.2pt, fill: rgb("#555"), when)],
   [*#title* — #text(size: 8.8pt, fill: rgb("#555"), place)]
 )
 #let sec(t) = block(above: 10pt, below: 5pt)[
@@ -48,7 +48,9 @@ Consultant informatique pour des PME depuis 2019 : installations, réseaux, gest
 - Activités maths/informatique (Scratch), suivi personnalisé d'élèves de primaire.
 
 #sec[Formation]
+
 #job[2020 – 2022][Master 1 Chimie (parcours analytique, physique et théorique)][Sorbonne Université, Paris]
+
 #job[2017 – 2020][Licence de Chimie][Sorbonne Université, Paris]
 
 #sec[Compétences]
