@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kenzi Feraoun — IT & Data freelance</title>
+<title>Kenzi Feraoun — données de marchés publics, opportunités d'appels d'offres</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,108 +11,111 @@
   <nav>
     <span class="brand">Kenzi Feraoun</span>
     <span class="spacer"></span>
-    <a href="#projects" data-i18n="nav_projects">Projects</a>
-    <a href="#skills" data-i18n="nav_skills">Skills</a>
+    <a href="#projects" data-i18n="nav_projects">Projets</a>
+    <a href="#skills" data-i18n="nav_skills">Compétences</a>
     <a href="#contact" data-i18n="nav_contact">Contact</a>
-    <button id="lang" type="button">FR</button>
+    <button id="lang" type="button">EN</button>
   </nav>
 </header>
 
 <main>
 <section id="intro">
-  <h1 data-i18n="intro_h1">IT &amp; data freelance</h1>
+  <h1 data-i18n="intro_h1">Je transforme les données de marchés publics en opportunités d'appels d'offres</h1>
   <p data-i18n="intro_p">
-    I build small, working data pipelines and tools: Python, pandas, Streamlit,
-    Neo4j, Linux. Ten years of IT operations behind it (refurb, homelab, automation),
-    and I ship the whole thing — data in, dashboard out, documented.
+    Je construis des pipelines et des outils data qui tiennent debout : Python,
+    pandas, Streamlit, Neo4j, Linux. Derrière, dix ans d'exploitation IT
+    (reconditionnement, homelab, automatisation) — et je livre de bout en bout :
+    données en entrée, dashboard en sortie, documentation incluse.
   </p>
 </section>
 
 <section id="projects">
-  <h2 data-i18n="projects_h2">Selected projects</h2>
+  <h2 data-i18n="projects_h2">Projets choisis</h2>
 
   <article class="case" id="case-decp">
-    <h3><a href="case-studies/decp/" data-href-fr="case-studies/decp/fr/">DECP Radar — French public-contract analytics</a></h3>
+    <h3><a href="case-studies/decp/fr/" data-href-en="case-studies/decp/">DECP Radar — analyses sur la commande publique française</a></h3>
     <p data-i18n="decp_p">
-      Pipeline over the DECP dataset (French public procurement, data.gouv.fr):
-      stdlib-only ingestion with watermarking and dedupe (~750 notices/week, fields
-      ≥ 99.7% filled), a daily DuckDB-style rebuild over the consolidated 2019–2026
-      files (1.36 M usable contracts), and a Streamlit dashboard with CPV/département
-      filters. One concrete output: 55,957 contracts expiring in the next 12 months,
-      filterable by family, department and buyer — the re-tender window. Weekly cron,
-      under 2 h/week of compute.
+      Pipeline sur le jeu de données DECP (commande publique française, data.gouv.fr) :
+      ingestion en Python stdlib avec watermark et dédoublonnage (~750 avis/semaine,
+      champs remplis à ≥ 99,7 %), reconstruction quotidienne sur les fichiers consolidés
+      2019–2026 (1,36 M de contrats exploitables), dashboard Streamlit avec filtres
+      CPV/département. Une sortie concrète : 55 957 contrats arrivant à échéance dans
+      les 12 mois, filtrables par famille, département et acheteur — la fenêtre de
+      re-tender. Cron hebdomadaire, moins de 2 h/semaine de calcul.
     </p>
     <p class="meta">Python · pandas · Streamlit · Parquet · plotnine · cron</p>
-    <p class="readlink"><a href="https://github.com/zifken/decp-analytics/blob/main/README.md" data-href-fr="https://github.com/zifken/decp-analytics/blob/main/README.fr.md">README</a></p>
+    <p class="readlink"><a href="case-studies/decp/fr/" data-href-en="case-studies/decp/">Étude de cas</a></p>
   </article>
 
   <article class="case" id="case-sia">
-    <h3><a href="case-studies/sia/" data-href-fr="case-studies/sia/fr/">Sia — control client for a self-hosted Hermes agent</a></h3>
+    <h3><a href="case-studies/sia/fr/" data-href-en="case-studies/sia/">Sia — client de contrôle pour un agent Hermes auto-hébergé</a></h3>
     <p data-i18n="sia_p">
-      Fork of the upstream Android client, hardened for one specific operator flow:
-      30+ Jetpack Compose screens, WebSocket JSON-RPC + REST transport, offline
-      chat history in Room, signed release pipeline with F-Droid metadata. Voice
-      is push-to-talk only: server-side Whisper transcription, transcript fills
-      the compose box, never auto-sent. The shipped on-device STT dead-locked —
-      two documented A/B attempts, then removal. 2,495 tests passing.
+      Fork du client Android officiel, durci pour un flux opérateur précis : 30+ écrans
+      Jetpack Compose, transport WebSocket JSON-RPC + REST, historique hors-ligne en
+      Room, pipeline de release signée avec métadonnées F-Droid. La voix est en
+      push-to-talk uniquement : transcription Whisper côté serveur, le texte remplit la
+      zone de saisie, jamais envoyé automatiquement. La STT embarquée d'origine
+      dead-lockait — deux tentatives A/B documentées, puis retrait. 2 495 tests passants.
     </p>
     <p class="meta">Kotlin · Jetpack Compose · Room · WebSocket JSON-RPC · Gradle CI</p>
-    <p class="readlink"><a href="https://github.com/zifken/hermes-mobile/blob/master/README.md" data-href-fr="https://github.com/zifken/hermes-mobile/blob/master/README.md">README</a></p>
+    <p class="readlink"><a href="https://github.com/zifken/hermes-mobile/blob/master/README.fr.md">README</a></p>
   </article>
 
   <article class="case" id="case-freebox">
-    <h3><a href="case-studies/freebox-api/" data-href-fr="case-studies/freebox-api/fr/">Freebox control — the router as an API</a></h3>
+    <h3><a href="case-studies/freebox-api/fr/" data-href-en="case-studies/freebox-api/">Freebox — le routeur comme une API</a></h3>
     <p data-i18n="freebox_p">
-      Scriptable control of a Freebox ISP router: a library of proven recipes
-      where each one documents the failure it overcame — the API version is only
-      discoverable from the web app's own JavaScript, documented CSRF headers don't
-      work for session POSTs (the in-page Ajax context does), and partial-record
-      PUTs silently reset Wi-Fi AP fields. Includes LAN listing, Wake-on-LAN and
-      DFS radar-check diagnosis for the 5 GHz band.
+      Contrôle scriptable d'une Freebox : une bibliothèque de recettes éprouvées où
+      chacune documente l'échec qu'elle a surmonté — la version de l'API n'est
+      découverte que dans le JavaScript de l'appli web du routeur, les en-têtes CSRF
+      documentés ne fonctionnent pas pour les POST de session (le contexte Ajax interne,
+      oui), et un PUT partiel réinitialise silencieusement les champs omis de la config
+      Wi-Fi. Inclut le listing LAN, le Wake-on-LAN et le diagnostic DFS (radar) de la
+      bande 5 GHz.
     </p>
     <p class="meta">Python · HTTP API · homelab ops</p>
-    <p class="readlink"><a href="https://github.com/zifken/freebox-control/blob/master/README.md" data-href-fr="https://github.com/zifken/freebox-control/blob/master/README.md">README</a></p>
+    <p class="readlink"><a href="case-studies/freebox-api/fr/" data-href-en="case-studies/freebox-api/">README</a></p>
   </article>
 
   <article class="case" id="case-kbtyp">
-    <h3><a href="case-studies/kb-typ/" data-href-fr="case-studies/kb-typ/fr/">kb-typ — print-grade PDF deliverables from source</a></h3>
+    <h3><a href="case-studies/kb-typ/fr/" data-href-en="case-studies/kb-typ/">kb-typ — livrables PDF print-grade depuis la source</a></h3>
     <p data-i18n="kbtyp_p">
-      A Typst-based document system, defined once and instantiated per deliverable:
-      A4 page system with numbered headings, auto outline, cover, callout blocks,
-      themed tables, figure blocks; bilingual FR/EN from the same source; figures
-      generated upstream (plotnine) and referenced by path so a data refresh
-      regenerates the PDF unchanged. Single-command compile, with bounding-box
-      verification of every image and label before delivery. Client deliverables
-      are withheld; the reusable template is public:
-      <a href="https://github.com/zifken/typst-report-template">zifken/typst-report-template</a>.
+      Un système documentaire basé sur Typst, défini une fois et instancié par
+      livrable : système de page A4 avec titres numérotés, sommaire automatique,
+      couverture, encadrés, tableaux thémés, blocs figures ; bilingue FR/EN depuis la
+      même source ; figures générées en amont (plotnine) et référencées par chemin, pour
+      qu'un rafraîchissement de données régénère le PDF à l'identique. Compilation en
+      une commande, avec vérification bounding-box de chaque image et libellé avant
+      livraison. Les livrables clients sont confidentiels ; un échantillon générique
+      peut être produit sur demande : <a href="https://github.com/zifken/typst-report-template">zifken/typst-report-template</a>.
     </p>
-    <p class="meta">Typst · Python · PDF · bilingual FR/EN</p>
-    <p class="readlink"><a href="https://github.com/zifken/typst-report-template/blob/master/README.md" data-href-fr="https://github.com/zifken/typst-report-template/blob/master/README.md">README</a></p>
+    <p class="meta">Typst · Python · PDF · bilingue FR/EN</p>
+    <p class="readlink"><a href="https://github.com/zifken/typst-report-template/blob/master/README.fr.md">README</a></p>
   </article>
 
 </section>
 
 <section id="skills">
-  <h2 data-i18n="skills_h2">Skills</h2>
+  <h2 data-i18n="skills_h2">Compétences</h2>
   <ul>
-    <li data-i18n="skills_data"><strong>Data</strong>: Python (pandas, plotnine), Streamlit, DuckDB/Parquet, Neo4j, pipelines &amp; cron automation</li>
-    <li data-i18n="skills_docs"><strong>Documents</strong>: Typst print-grade PDF system, bilingual FR/EN deliverables</li>
-    <li data-i18n="skills_android"><strong>Android</strong>: Kotlin, Jetpack Compose, Room, Gradle CI/release</li>
-    <li data-i18n="skills_ops"><strong>Ops</strong>: Linux, Podman, homelab &amp; router APIs, Tailscale</li>
-    <li data-i18n="skills_it"><strong>IT</strong>: 10 years operations — refurb, diagnostics, fleet handling</li>
+    <li data-i18n="skills_data"><strong>Data</strong> : Python (pandas, plotnine), Streamlit, DuckDB/Parquet, Neo4j, pipelines et automatisation cron</li>
+    <li data-i18n="skills_docs"><strong>Documents</strong> : système PDF print-grade Typst, livrables bilingues FR/EN</li>
+    <li data-i18n="skills_android"><strong>Android</strong> : Kotlin, Jetpack Compose, Room, CI/release Gradle</li>
+    <li data-i18n="skills_ops"><strong>Ops</strong> : Linux, Podman, API routeur &amp; homelab, Tailscale</li>
+    <li data-i18n="skills_it"><strong>IT</strong> : dix ans d'exploitation — reconditionnement, diagnostic, gestion de parc</li>
   </ul>
 </section>
 
 <section id="contact">
   <h2 data-i18n="contact_h2">Contact</h2>
-  <p data-i18n="contact_p">Email: <a href="mailto:kenziferaoun@proton.me">kenziferaoun@proton.me</a></p>
+  <p data-i18n="contact_p">Email : <a href="mailto:kenziferaoun@proton.me">kenziferaoun@proton.me</a></p>
+  <p data-i18n="contact_cta">Une demi-heure suffit pour cadrer votre niche (famille CPV, départements) et montrer le dashboard sur vos critères. Envoyez votre secteur : je vous montre ce que ça donne.</p>
 </section>
 </main>
 
 <footer>
-  <span data-i18n="footer_note">Static site, no tracking, no build step.</span>
+  <span data-i18n="footer_note">Site statique, sans traceur, sans étape de build.</span>
   <span> · </span>
-  <a href="https://github.com/zifken/malt-portefolio" data-i18n-href="footer_source">Source on GitHub</a>
+  <a href="https://github.com/zifken/malt-portefolio">Source sur GitHub</a>
 </footer>
 
 <script src="i18n.js"></script>

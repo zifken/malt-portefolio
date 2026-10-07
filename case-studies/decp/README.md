@@ -1,26 +1,24 @@
-# DECP Radar — analytics and weekly digest on French public procurement
+# DECP Radar — analytics on French public procurement
 
-**Stack:** Python (stdlib + pandas), Streamlit, Parquet, plotnine, cron. Data: open data (data.gouv.fr, Licence Ouverte / Etalab 2.0). Status: running weekly on a home server.
+Python (stdlib + pandas), Streamlit, Parquet, cron. Data from data.gouv.fr (Licence Ouverte 2.0). Runs weekly on a home server.
 
 ## The problem
 
-Every public contract awarded in France must be published as a DECP notice (*données essentielles de la commande publique*). The data is open, but it is split into two awkward sources: daily delta files (for fresh notices) and yearly consolidated files (for history), with duplicated records, inconsistent identifiers, and amounts that mean different things depending on contract type. Any business question — "which contracts expire soon and will be re-tendered?", "who won what this week?" — requires a pipeline before it requires analysis.
+Every public contract awarded in France must be published as a DECP notice. The data is open but split across two sources: daily delta files for fresh notices, yearly consolidated files for history. Duplicated records, inconsistent identifiers, and amounts that mean different things per contract type. Any question worth asking — who won what this week, which contracts expire soon — needs a pipeline before it needs analysis.
 
-I built one.
+## What I built
 
-## What was built
+Two repos that work as one product.
 
-Two repos that work as one product:
+decp-digest does ingestion and the weekly digest. Stdlib-only Python: fetches the daily deltas, watermarks on the last processed file, dedupes on (acheteur.id, id) — about 3% of records repeat across consecutive files. Measured over a full validation week: ~750 notices, every field the digest needs at 99.7% fill or better. The README also states what the data cannot support, e.g. publication lags notification by a median of 6 days, so the digest groups by publication date.
 
-**decp-digest** — the ingestion and weekly-digest pipeline. Written in stdlib-only Python: it fetches the daily delta files from the DECP API, watermarks on the last processed file so re-runs are cheap, dedupes on `(acheteur.id, id)` (~3% of records repeat across consecutive files), and produces a weekly digest of new award notices. Measured over a full validation week: 729 records, ~750 notices/week, and every field the digest needs ≥ 99.7% filled. The README documents what the data can and cannot support — e.g. publication lags notification by a median of 6 days, so the digest groups by publication date, not notification date.
+decp-analytics rebuilds from the consolidated files (2019–2026), drops superseded records (311,002 dropped, 1,355,661 usable), estimates expiry as dateNotification + dureeMois, and outputs:
 
-**decp-analytics** — the forecast and analytics layer on top. It rebuilds from the consolidated files (2019–2026), deduplicates superseded records (311,002 dropped, 1,355,661 usable contracts), estimates each contract's expiry as `dateNotification + dureeMois`, and outputs:
+- the re-tender window: 55,957 contracts expiring within 12 months, filterable by CPV family, département and buyer;
+- a Streamlit dashboard (CPV / département / period filters, KPIs, buyer and supplier views);
+- a free 60-row public sample.
 
-- the re-tender window: **55,957 contracts expiring in the next 12 months**, filterable by CPV family, département and buyer — delivered as CSV plus a curated IT-sector report;
-- a **Streamlit dashboard** (CPV / département / period filters, KPIs, buyer and supplier views);
-- a free public sample (60 rows) used for the landing page.
-
-A weekly refresh cron (Monday 07:30) keeps both layers current; the full rebuild is the only heavy step and fits comfortably in the < 2 h/week budget.
+A Monday 07:30 cron refreshes both layers. The full rebuild is the only heavy step and fits in the under-2h/week budget.
 
 ## From the real data
 
@@ -28,17 +26,21 @@ A weekly refresh cron (Monday 07:30) keeps both layers current; the full rebuild
 ![](images/montants_par_annee.png)
 ![](images/echeances_cpv.png)
 
-*Chart 3 legend — top CPV divisions: 45 Travaux de construction (19 916), 71 Ingénierie (5 848), 79 Conseil (2 658), Environnement (2 374), 33 (2 323), 50 Réparation (1 880), 34 (1 580), Transports (1 530), 44 (1 473), 39 (1 443). Division names come from the open dataset as published; a few arrive unmapped ("33?", "34?") and are shown as-is.*
+*Chart 3 — top CPV divisions: 45 construction (19,916), 71 engineering (5,848), 79 consulting (2,658). Division names come from the dataset as published, unmapped ones ("33?") shown as-is.*
 
-All charts are generated with plotnine from the pipeline's own parquet outputs, French labels, and are checked programmatically (text bounding boxes) before publication.
+All charts come from plotnine on the pipeline's own parquet outputs, and are checked programmatically (text bounding boxes) before publication.
 
-## What I learned
+## Case study — demo on public data
 
-- **Measure data quality before building on it.** The fill-rate table in the digest README is what makes the product trustworthy; it also caught the trap of grouping by notification date.
-- **Contract identity is not the published `id`.** The consolidated files merge publication channels, so the same contract arrives more than once; deduplication needs a content key, not the raw key.
-- **Amounts are ceilings, not spending.** Accord-cadre amounts are the maximum over the agreement — a chart of "total notified volume" is honest only if it says so.
-- **Two sources, two cadences.** Daily deltas and yearly consolidations answer different questions; stitching them (supersession handling) was most of the work.
+*Case study — demonstration on public data (data.gouv.fr). No client is cited; the figures come from the DECP Radar pipeline and are reproducible.*
 
-## Repos
+**Problem.** The DECP data is published as open data but usable by almost no one: 1.36 M consolidated contracts (2019–2026), ~750 new notices a week, heterogeneous fields. A supplier who wants to spot its upcoming re-tender windows has neither the time nor the tools to sort that volume.
 
-Private (zifken/decp-analytics, zifken/decp-digest) — sanitized extracts and the sample dataset are published separately.
+**Approach.** A Python pipeline (pandas, Parquet): stdlib-only ingestion with watermarking and deduplication, a daily rebuild of the consolidated dataset, field-completeness checks (≥ 99.7% filled). On top of it, a Streamlit dashboard with filters by CPV family, department and buyer. A weekly cron runs in under 2 h of compute.
+
+**Result.** One concrete, actionable number: 55,957 contracts expiring in the next 12 months, isolable by family, territory and buyer. The signal is exploitable in minutes of filtering instead of days of manual sorting.
+
+**What a client does with it.** A sales team or a bid office uses this entry point to identify contracts reaching term in its territory, prepare upstream monitoring before notices are published, and prioritise its outreach. Possible deliverables: the dashboard, a periodic extraction filtered on its niche, or a periodic PDF report generated from the same base (Typst).
+
+**Next step.** Half an hour is enough to scope your niche (CPV, departments) and see the dashboard on your own criteria — contact: kenziferaoun@proton.me.
+

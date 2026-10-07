@@ -1,46 +1,44 @@
-// FR/EN toggle — EN is the source in index.html; FR overrides here.
+// FR/EN toggle — FR is the source in index.html; EN overrides here. Default: FR.
 const I18N = {
-  fr: {
-    nav_projects: "Projets", nav_skills: "Compétences", nav_contact: "Contact",
-    intro_h1: "Freelance IT & data",
-    intro_p: "Je construis des pipelines et des outils data qui tiennent debout : Python, pandas, Streamlit, Neo4j, Linux. Derrière, dix ans d'exploitation IT (reconditionnement, homelab, automatisation) — et je livre de bout en bout : données en entrée, dashboard en sortie, documentation incluse.",
-    projects_h2: "Projets choisis",
-    decp_p: "Pipeline sur le jeu de données DECP (commande publique française, data.gouv.fr) : ingestion en Python stdlib avec watermark et dédoublonnage (~750 avis/semaine, champs remplis à ≥ 99,7 %), reconstruction quotidienne sur les fichiers consolidés 2019–2026 (1,36 M de contrats exploitables), dashboard Streamlit avec filtres CPV/département. Une sortie concrète : 55 957 contrats arrivant à échéance dans les 12 mois, filtrables par famille, département et acheteur — la fenêtre de re-tender. Cron hebdomadaire, moins de 2 h/semaine de calcul.",
-    sia_p: "Fork du client Android officiel, durci pour un flux opérateur précis : 30+ écrans Jetpack Compose, transport WebSocket JSON-RPC + REST, historique hors-ligne en Room, pipeline de release signée avec métadonnées F-Droid. La voix est en push-to-talk uniquement : transcription Whisper côté serveur, le texte remplit la zone de saisie, jamais envoyé automatiquement. La STT embarquée d'origine dead-lockait — deux tentatives A/B documentées, puis retrait. 2 495 tests passants.",
-    freebox_p: "Contrôle scriptable d'une Freebox : une bibliothèque de recettes éprouvées où chacune documente l'échec qu'elle a surmonté — la version de l'API n'est découverte que dans le JavaScript de l'appli web du routeur, les en-têtes CSRF documentés ne fonctionnent pas pour les POST de session (le contexte Ajax interne, oui), et un PUT partiel réinitialise silencieusement les champs omis de la config Wi-Fi. Inclut le listing LAN, le Wake-on-LAN et le diagnostic DFS (radar) de la bande 5 GHz.",
-    kbtyp_p: "Un système documentaire basé sur Typst, défini une fois et instancié par livrable : système de page A4 avec titres numérotés, sommaire automatique, couverture, encadrés, tableaux thémés, blocs figures ; bilingue FR/EN depuis la même source ; figures générées en amont (plotnine) et référencées par chemin, pour qu'un rafraîchissement de données régénère le PDF à l'identique. Compilation en une commande, avec vérification bounding-box de chaque image et libellé avant livraison. Les livrables clients sont confidentiels ; un échantillon générique peut être produit sur demande.",
-    skills_h2: "Compétences",
-    skills_data: "Data : Python (pandas, plotnine), Streamlit, DuckDB/Parquet, Neo4j, pipelines et automatisation cron",
-    skills_docs: "Documents : système PDF print-grade Typst, livrables bilingues FR/EN",
-    skills_android: "Android : Kotlin, Jetpack Compose, Room, CI/release Gradle",
-    skills_ops: "Ops : Linux, Podman, API routeur & homelab, Tailscale",
-    skills_it: "IT : dix ans d'exploitation — reconditionnement, diagnostic, gestion de parc",
+  en: {
+    nav_projects: "Projects", nav_skills: "Skills", nav_contact: "Contact",
+    intro_h1: "I turn French public procurement data into tender opportunities",
+    intro_p: "I build small, working data pipelines and tools: Python, pandas, Streamlit, Neo4j, Linux. Ten years of IT operations behind it (refurb, homelab, automation), and I ship the whole thing — data in, dashboard out, documented.",
+    projects_h2: "Selected projects",
+    decp_p: "Pipeline over the DECP dataset (French public procurement, data.gouv.fr): stdlib-only ingestion with watermarking and dedupe (~750 notices/week, fields ≥ 99.7% filled), a daily rebuild over the consolidated 2019–2026 files (1.36 M usable contracts), and a Streamlit dashboard with CPV/department filters. One concrete output: 55,957 contracts expiring in the next 12 months, filterable by family, department and buyer — the re-tender window. Weekly cron, under 2 h/week of compute.",
+    sia_p: "Fork of the upstream Android client, hardened for one specific operator flow: 30+ Jetpack Compose screens, WebSocket JSON-RPC + REST transport, offline chat history in Room, signed release pipeline with F-Droid metadata. Voice is push-to-talk only: server-side Whisper transcription, transcript fills the compose box, never auto-sent. The shipped on-device STT dead-locked — two documented A/B attempts, then removal. 2,495 tests passing.",
+    freebox_p: "Scriptable control of a Freebox ISP router: a library of proven recipes where each one documents the failure it overcame — the API version is only discoverable from the web app's own JavaScript, documented CSRF headers don't work for session POSTs (the in-page Ajax context does), and partial-record PUTs silently reset Wi-Fi AP fields. Includes LAN listing, Wake-on-LAN and DFS radar-check diagnosis for the 5 GHz band.",
+    kbtyp_p: "A Typst-based document system, defined once and instantiated per deliverable: A4 page system with numbered headings, auto outline, cover, callout blocks, themed tables, figure blocks; bilingual FR/EN from the same source; figures generated upstream (plotnine) and referenced by path so a data refresh regenerates the PDF unchanged. Single-command compile, with bounding-box verification of every image and label before delivery. Client deliverables are withheld; the reusable template is public: zifken/typst-report-template.",
+    skills_h2: "Skills",
+    skills_data: "Data: Python (pandas, plotnine), Streamlit, DuckDB/Parquet, Neo4j, pipelines & cron automation",
+    skills_docs: "Documents: Typst print-grade PDF system, bilingual FR/EN deliverables",
+    skills_android: "Android: Kotlin, Jetpack Compose, Room, Gradle CI/release",
+    skills_ops: "Ops: Linux, Podman, homelab & router APIs, Tailscale",
+    skills_it: "IT: 10 years operations — refurb, diagnostics, fleet handling",
     contact_h2: "Contact",
-    contact_p: "Email : kenziferaoun@proton.me",
-    footer_note: "Site statique, sans traceur, sans étape de build.",
-    footer_source: "Source sur GitHub"
+    contact_p: "Email: kenziferaoun@proton.me",
+    contact_cta: "Half an hour is enough to scope your niche (CPV family, departments) and show the dashboard on your own criteria. Send me your sector and I will show you what it looks like.",
+    footer_note: "Static site, no tracking, no build step.",
+    footer_source: "Source on GitHub"
   }
 };
-let lang = "en";
+let lang = "fr";
 const btn = document.getElementById("lang");
 function apply() {
   document.documentElement.lang = lang;
-  btn.textContent = lang === "en" ? "FR" : "EN";
-  if (lang === "en") {
+  btn.textContent = lang === "fr" ? "EN" : "FR";
+  if (lang === "fr") {
     location.reload();
     return;
   }
   document.querySelectorAll("[data-i18n]").forEach(el => {
-    const v = I18N.fr[el.dataset.i18n];
+    if (!el.dataset.fr) el.dataset.fr = el.textContent.trim().replace(/\s+/g, " ");
+    const v = I18N.en[el.dataset.i18n];
     if (v) el.textContent = v;
   });
-  document.querySelectorAll("[data-i18n-href]").forEach(el => {
-    const v = I18N.fr[el.dataset.i18nHref];
-    if (v) el.textContent = v;
-  });
-  document.querySelectorAll("a[data-href-fr]").forEach(el => {
-    if (!el.dataset.hrefEn) el.dataset.hrefEn = el.getAttribute("href");
-    el.setAttribute("href", el.dataset.hrefFr);
+  document.querySelectorAll("a[data-href-en]").forEach(el => {
+    if (!el.dataset.hrefFr) el.dataset.hrefFr = el.getAttribute("href");
+    el.setAttribute("href", lang === "en" ? el.dataset.hrefEn : el.dataset.hrefFr);
   });
 }
-btn.addEventListener("click", () => { lang = lang === "en" ? "fr" : "en"; apply(); });
+btn.addEventListener("click", () => { lang = lang === "fr" ? "en" : "fr"; apply(); });
