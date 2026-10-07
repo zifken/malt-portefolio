@@ -27,9 +27,3 @@ So I forked it, renamed it Sia (com.sia.hermescontrol), and hardened it.
 
 The next iteration repositions Sia as "your Tailscale client for Hermes": an onboarding wizard that walks Tailscale API key, node discovery, first connection — instead of asking the user to hand-copy connection settings. The fork relationship is stated openly.
 
-## Details
-
-- English page: [./](./)
-- Page en français : [fr/](fr/)
-
-Private fork (zifken/hermes-mobile); the rework lands on a branch, publication decision to follow.

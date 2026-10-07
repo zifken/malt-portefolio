@@ -16,9 +16,3 @@ A Typst document system, defined once, instantiated per deliverable:
 - Asset pipeline: figures are generated upstream (plotnine charts), referenced by path, so a data refresh regenerates the PDF with layout unchanged.
 - Output: single-command compile to a print-ready PDF, checked for clipped text (bounding-box verification of every image and label) before delivery.
 
-## Details
-
-- English page: [./](./)
-- Page en français : [fr/](fr/)
-
-The system is in production use. The concrete deliverables are client-confidential; on request, a generic sample document built with the same system can be produced.

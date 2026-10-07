@@ -27,9 +27,3 @@ Je l'ai donc forké, renommé Sia (com.sia.hermescontrol), et durci.
 
 L'itération suivante repositionne Sia comme « votre client Tailscale pour Hermes » : un assistant d'onboarding qui enchaîne clé API Tailscale, découverte des nœuds, première connexion — au lieu de faire recopier les réglages à la main. Le lien de fork est assumé ouvertement.
 
-## Détails
-
-- Page en français : [./](./)
-- English page: [../](../)
-
-Fork privé (zifken/hermes-mobile) ; le rework atterrit sur une branche, décision de publication à suivre.

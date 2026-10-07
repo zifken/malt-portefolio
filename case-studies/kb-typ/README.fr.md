@@ -16,9 +16,3 @@ Un système documentaire Typst, défini une fois, instancié par livrable :
 - Pipeline d'assets : les figures sont générées en amont (graphiques plotnine), référencées par chemin, pour qu'un rafraîchissement de données régénère le PDF sans changer la mise en page.
 - Sortie : compilation en une commande vers un PDF prêt à imprimer, vérifié pour le texte coupé (bounding-box de chaque image et libellé) avant livraison.
 
-## Détails
-
-- Page en français : [./](./)
-- English page: [../](../)
-
-Le système est en usage réel. Les livrables concrets sont confidentiels ; sur demande, un document d'exemple générique construit avec le même système peut être produit.

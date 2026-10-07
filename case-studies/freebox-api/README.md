@@ -22,9 +22,3 @@ A skills library of proven recipes, each documenting the failure it overcame, no
 - Wi-Fi AP configuration: the PUT must carry the full record. A diagnostic recipe documents the partial-PUT reset behavior so it never bites again.
 - DFS diagnosis: after a reboot the 5 GHz SSID can stay invisible because of dfs_cac (Dynamic Frequency Selection, radar-checking, up to 600 s). One recipe reads AP status, presence, dfs_cac status, and names that mode in one pass.
 
-## Details
-
-- English page: [./](./)
-- Page en français : [fr/](fr/)
-
-Small, personal, honest: a homelab operations win. The recipes run on cron for Wi-Fi checks, on demand for WoL and LAN audits.

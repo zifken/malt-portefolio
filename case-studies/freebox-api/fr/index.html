@@ -26,9 +26,6 @@
 <h2>Ce que j'ai construit</h2>
 <p>Une bibliothèque de recettes éprouvées, où chacune documente l'échec qu'elle a surmonté, pas seulement la commande qui marche :</p>
 <ul><li>Découverte des chemins d'API : grep du freeboxos.min.js de la web-app pour la version de l'API et la carte des endpoints. La session navigateur est la vérité terrain sur ce que le firmware sert réellement.</li><li>Contrôle de session : le chemin qui marche est un POST via le contexte Ext.Ajax interne de la web-app — la même requête que l'UI elle-même émet.</li><li>Listing des hôtes LAN et Wake-on-LAN par MAC, avec une étape de parsing (les MAC arrivent ancrées en HTML) pour que les recettes soient scriptables.</li><li>Configuration Wi-Fi : le PUT doit porter l'enregistrement complet. Une recette de diagnostic documente le comportement de remise à zéro du PUT partiel, pour que ça ne morde plus.</li><li>Diagnostic DFS : après un reboot, le SSID 5 GHz peut rester invisible à cause de dfs_cac (Dynamic Frequency Selection, vérification radar, jusqu'à 600 s). Une recette lit l'état de l'AP, la présence, dfs_cac, et nomme ce mode en un passage.</li></ul>
-<h2>Détails</h2>
-<ul><li>Page en français : <a href="./">./</a></li><li>English page: <a href="../">../</a></li></ul>
-<p>Petit, personnel, honnête : une victoire d'ops homelab. Les recettes tournent en cron pour les checks Wi-Fi, à la demande pour le WoL et les audits LAN.</p>
 </main>
 <footer><span>Site statique, sans traceur.</span> · <a href="https://github.com/zifken/malt-portefolio">Source sur GitHub</a></footer>
 </body>

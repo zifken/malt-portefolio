@@ -30,9 +30,3 @@ Un cron le lundi 07:30 rafraîchit les deux couches. La reconstruction complète
 
 Tous les graphiques sortent de plotnine sur les sorties parquet du pipeline, et sont vérifiés programmatiquement (bounding boxes du texte) avant publication.
 
-## Détails
-
-- Page en français : [./](./)
-- English page: [../](../)
-
-Dépôts privés (zifken/decp-analytics, zifken/decp-digest) ; extraits assainis et échantillon publiés à part.

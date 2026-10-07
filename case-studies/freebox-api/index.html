@@ -26,9 +26,6 @@
 <h2>What I built</h2>
 <p>A skills library of proven recipes, each documenting the failure it overcame, not just the working command:</p>
 <ul><li>API path discovery: grep the router web app's freeboxos.min.js for the API version and endpoint map. The browser session is the ground truth for what the firmware actually serves.</li><li>Session control: the proven path is a POST through the in-page Ext.Ajax context of the router web UI — the same request the UI itself issues.</li><li>LAN host listing and Wake-on-LAN by MAC, with a parse step (MACs arrive HTML-anchored) so recipes are scriptable.</li><li>Wi-Fi AP configuration: the PUT must carry the full record. A diagnostic recipe documents the partial-PUT reset behavior so it never bites again.</li><li>DFS diagnosis: after a reboot the 5 GHz SSID can stay invisible because of dfs_cac (Dynamic Frequency Selection, radar-checking, up to 600 s). One recipe reads AP status, presence, dfs_cac status, and names that mode in one pass.</li></ul>
-<h2>Details</h2>
-<ul><li>English page: <a href="./">./</a></li><li>Page en français : <a href="fr/">fr/</a></li></ul>
-<p>Small, personal, honest: a homelab operations win. The recipes run on cron for Wi-Fi checks, on demand for WoL and LAN audits.</p>
 </main>
 <footer><span>Static site, no tracking.</span> · <a href="https://github.com/zifken/malt-portefolio">Source on GitHub</a></footer>
 </body>

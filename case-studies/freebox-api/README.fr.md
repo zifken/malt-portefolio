@@ -22,9 +22,3 @@ Une bibliothèque de recettes éprouvées, où chacune documente l'échec qu'ell
 - Configuration Wi-Fi : le PUT doit porter l'enregistrement complet. Une recette de diagnostic documente le comportement de remise à zéro du PUT partiel, pour que ça ne morde plus.
 - Diagnostic DFS : après un reboot, le SSID 5 GHz peut rester invisible à cause de dfs_cac (Dynamic Frequency Selection, vérification radar, jusqu'à 600 s). Une recette lit l'état de l'AP, la présence, dfs_cac, et nomme ce mode en un passage.
 
-## Détails
-
-- Page en français : [./](./)
-- English page: [../](../)
-
-Petit, personnel, honnête : une victoire d'ops homelab. Les recettes tournent en cron pour les checks Wi-Fi, à la demande pour le WoL et les audits LAN.

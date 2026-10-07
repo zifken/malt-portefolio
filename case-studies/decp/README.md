@@ -30,9 +30,3 @@ A Monday 07:30 cron refreshes both layers. The full rebuild is the only heavy st
 
 All charts come from plotnine on the pipeline's own parquet outputs, and are checked programmatically (text bounding boxes) before publication.
 
-## Details
-
-- English page: [./](./)
-- Page en français : [fr/](fr/)
-
-Private repos (zifken/decp-analytics, zifken/decp-digest); sanitized extracts and the sample are published separately.
