@@ -30,3 +30,17 @@ A Monday 07:30 cron refreshes both layers. The full rebuild is the only heavy st
 
 All charts come from plotnine on the pipeline's own parquet outputs, and are checked programmatically (text bounding boxes) before publication.
 
+## Case study — demo on public data
+
+*Case study — demonstration on public data (data.gouv.fr). No client is cited; the figures come from the DECP Radar pipeline and are reproducible.*
+
+**Problem.** The DECP data is published as open data but usable by almost no one: 1.36 M consolidated contracts (2019–2026), ~750 new notices a week, heterogeneous fields. A supplier who wants to spot its upcoming re-tender windows has neither the time nor the tools to sort that volume.
+
+**Approach.** A Python pipeline (pandas, Parquet): stdlib-only ingestion with watermarking and deduplication, a daily rebuild of the consolidated dataset, field-completeness checks (≥ 99.7% filled). On top of it, a Streamlit dashboard with filters by CPV family, department and buyer. A weekly cron runs in under 2 h of compute.
+
+**Result.** One concrete, actionable number: 55,957 contracts expiring in the next 12 months, isolable by family, territory and buyer. The signal is exploitable in minutes of filtering instead of days of manual sorting.
+
+**What a client does with it.** A sales team or a bid office uses this entry point to identify contracts reaching term in its territory, prepare upstream monitoring before notices are published, and prioritise its outreach. Possible deliverables: the dashboard, a periodic extraction filtered on its niche, or a periodic PDF report generated from the same base (Typst).
+
+**Next step.** Half an hour is enough to scope your niche (CPV, departments) and see the dashboard on your own criteria — contact: kenziferaoun@proton.me.
+

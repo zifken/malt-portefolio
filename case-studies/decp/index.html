@@ -14,6 +14,7 @@
     <a href="../../#projects">Projects</a>
     <a href="../../#contact">Contact</a>
     <a href="fr/">Français</a>
+    <a href="https://github.com/zifken/decp-analytics#readme">Repo</a>
   </nav>
 </header>
 <main>
@@ -33,6 +34,13 @@
 <p class='fig'><img src="images/echeances_cpv.png" alt="figure"></p>
 <p class='fig'><em>Chart 3 — top CPV divisions: 45 construction (19,916), 71 engineering (5,848), 79 consulting (2,658). Division names come from the dataset as published, unmapped ones ("33?") shown as-is.</em></p>
 <p>All charts come from plotnine on the pipeline's own parquet outputs, and are checked programmatically (text bounding boxes) before publication.</p>
+<h2>Case study — demo on public data</h2>
+<p class='fig'><em>Case study — demonstration on public data (data.gouv.fr). No client is cited; the figures come from the DECP Radar pipeline and are reproducible.</em></p>
+<p><strong>Problem.</strong> The DECP data is published as open data but usable by almost no one: 1.36 M consolidated contracts (2019–2026), ~750 new notices a week, heterogeneous fields. A supplier who wants to spot its upcoming re-tender windows has neither the time nor the tools to sort that volume.</p>
+<p><strong>Approach.</strong> A Python pipeline (pandas, Parquet): stdlib-only ingestion with watermarking and deduplication, a daily rebuild of the consolidated dataset, field-completeness checks (≥ 99.7% filled). On top of it, a Streamlit dashboard with filters by CPV family, department and buyer. A weekly cron runs in under 2 h of compute.</p>
+<p><strong>Result.</strong> One concrete, actionable number: 55,957 contracts expiring in the next 12 months, isolable by family, territory and buyer. The signal is exploitable in minutes of filtering instead of days of manual sorting.</p>
+<p><strong>What a client does with it.</strong> A sales team or a bid office uses this entry point to identify contracts reaching term in its territory, prepare upstream monitoring before notices are published, and prioritise its outreach. Possible deliverables: the dashboard, a periodic extraction filtered on its niche, or a periodic PDF report generated from the same base (Typst).</p>
+<p><strong>Next step.</strong> Half an hour is enough to scope your niche (CPV, departments) and see the dashboard on your own criteria — contact: kenziferaoun@proton.me.</p>
 </main>
 <footer><span>Static site, no tracking.</span> · <a href="https://github.com/zifken/malt-portefolio">Source on GitHub</a></footer>
 </body>

@@ -30,3 +30,17 @@ Un cron le lundi 07:30 rafraîchit les deux couches. La reconstruction complète
 
 Tous les graphiques sortent de plotnine sur les sorties parquet du pipeline, et sont vérifiés programmatiquement (bounding boxes du texte) avant publication.
 
+## Étude de cas — démonstration sur données publiques
+
+*Étude de cas — démonstration sur données publiques (data.gouv.fr). Aucun client n'est cité ; les chiffres proviennent du pipeline DECP Radar et sont reproductibles.*
+
+**Problème.** Les données DECP sont publiées en open data mais exploitables par presque personne : 1,36 M de contrats consolidés (2019–2026), ~750 avis nouveaux par semaine, champs hétérogènes. Un fournisseur qui veut repérer ses prochaines fenêtres de re-tender n'a ni le temps ni les outils pour trier ce volume.
+
+**Approche.** Un pipeline Python (pandas, Parquet) : ingestion en stdlib avec watermark et déduplication, reconstruction quotidienne du jeu consolidé, contrôle de complétude des champs (≥ 99,7 % remplis). Au-dessus, un dashboard Streamlit avec filtres par famille CPV, département et acheteur. Un cron hebdomadaire tourne en moins de 2 h de calcul.
+
+**Résultat.** Un chiffre d'appel concret : 55 957 contrats arrivent à échéance dans les 12 prochains mois, isolables par famille, territoire et acheteur. Le signal est exploitable en quelques minutes de filtrage au lieu de jours de tri manuel.
+
+**Ce que le client en fait.** Une équipe commerciale ou un bureau d'études utilise ce point d'entrée pour identifier les marchés arrivant à terme dans sa zone, préparer la veille amont avant publication des avis, et prioriser ses démarches. Livrables possibles : le dashboard, une extraction périodique filtrée sur sa niche, ou un rapport PDF périodique généré depuis le même socle (Typst).
+
+**Prochaine étape.** Une demi-heure d'échange suffit pour cadrer votre niche (CPV, départements) et voir le dashboard sur vos propres critères — contact : kenziferaoun@proton.me.
+
